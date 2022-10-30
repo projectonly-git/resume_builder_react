@@ -13,8 +13,8 @@ import Navbar from './Components/Navbar/Navbar'
 import Templateone from './Components/Resumetemplates/Templateone'
 import Templatetwo from './Components/Resumetemplates/Templatetwo'
 import Templatethree from './Components/Resumetemplates/Templatethree'
-
 import Templatefour from './Components/Resumetemplates/Templatefour'
+import Templategallery from './Components/TemplateSet/Templategallery'
 
 import Home from './Components/Homescreen/Home'
 import Userchooseme from './Components/Userchooseme/Userchooseme'
@@ -36,7 +36,7 @@ function App() {
       </Routes>
 
       <Routes>
-        <Route path="/enterresumedetails/1" element={<Personal />} />
+        <Route path="/enterpersonaldetails/:templateId" element={<Personal />} />
       </Routes>
 
       <Routes>
@@ -57,7 +57,11 @@ function App() {
       </Routes>
 
       <Routes>
-        <Route path="/showresults/:id" element={<Templatefour />} />
+        <Route path="/showresults/:id" element={<Templatethree />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/choosetemplates" element={<Templategallery />} />
       </Routes>
 
 

@@ -1,0 +1,10 @@
+.templategalary .make_bg_grey {
+    background-color: #f5f5f5;
+    border-radius: 20px;
+}
+
+.templategalary .input_box_text_templategallery {
+    border : none;
+    border-radius: 10px;
+    background-color : #475b75;
+}

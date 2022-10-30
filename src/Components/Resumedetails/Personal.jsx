@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Navbar from '../Navbar/Navbar'
 import './Resumedetails.css'
@@ -7,6 +7,8 @@ import '../common.css'
 
 
 const Personal = () => {
+
+  const {templateId} = useParams()
 
   const navigate = useNavigate();
 
@@ -16,6 +18,7 @@ const Personal = () => {
 
   const goNext = () => {
     navigate('/entereducationaldetails')
+    console.log(templateId)
   }
   return (
 
