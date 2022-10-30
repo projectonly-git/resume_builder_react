@@ -96,6 +96,7 @@ a {
 a:hover{
   text-decoration: none;
   border: none;
+  font-weight: bold;
 }
 
 .fixed-top{

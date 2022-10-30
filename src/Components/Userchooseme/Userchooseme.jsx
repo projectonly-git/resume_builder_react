@@ -43,8 +43,6 @@ const Userchooseme = () => {
 
         <div class="doctor mt-2 p-3">
           <div class="row">
-            
-
             <div class="col-lg-6 d-flex justify-content-center">
               <div class="i_am_medical top_header_button p-2" onClick={gotomedicalsoftware}>
                 <a href="/enterresumedetails/1"><h4 class="text-white"> I am a Software Engineer</h4></a>
@@ -59,7 +57,6 @@ const Userchooseme = () => {
 
           </div>
         </div>
-
 
       </div>
 

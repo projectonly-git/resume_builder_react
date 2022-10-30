@@ -48,7 +48,7 @@ const Templateone = () => {
 
 
             {/*-----------------------------------------------------------------------------------------------*/}
-            <span class="p-0 h3 text-danger underline1">  make_bg_grey  </span><br />
+            <span class="p-0 h3 text-danger underline1">  PROJECTS  </span><br />
 
             <div class=" make_bg_grey mt-2 p-2">
               <span class=" h4">Blood Bank Application</span>
