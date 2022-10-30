@@ -1,9 +1,9 @@
 
-.header{
+.home_hero_section .header{
     padding-top: 100px;
 }
 
-.top_header_button{
+.home_hero_section .top_header_button{
     background-color : #3c4852;
     color : white;
     width : 50%;
@@ -11,15 +11,12 @@
 }
 
 
-.set_background{
+.home_hero_section .set_background{
     background-color : #e8e3ff ;
     border-radius: 30px ;
 }
 
-.learn_outer{
-}
-
-.numbering{
+.home_hero_section .numbering{
     background-color : #3c4852;
     color : white ;
     border-radius : 20px ;
