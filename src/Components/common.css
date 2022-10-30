@@ -113,6 +113,7 @@ a:hover{
 
 
 @media print {
+  body {margin:0;}
   .outerNavbar {
     display: none;
   }

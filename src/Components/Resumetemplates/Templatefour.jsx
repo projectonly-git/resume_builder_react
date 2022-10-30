@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import Navbar from '../Navbar/Navbar'
 
 
-import "./templateone.css"
 
-const Templateone = () => {
+import '../common.css';
+import './Templatefour.css'
+
+const Templatefour = () => {
 
   const printDocument = () => {
     window.print();
@@ -13,7 +15,7 @@ const Templateone = () => {
 
   return (
 
-    <>
+    <div class="templatefour">
 
       <Navbar />
 
@@ -21,11 +23,11 @@ const Templateone = () => {
 
       </div>
 
-      <div class=" d-flex justify-content-center templateone" >
+      <div class=" d-flex justify-content-center" >
         <div class=" ">
           <div class=" page px-2 py-1">
 
-            <div class="personal_details p-2 text-white">
+            <div class="personal_details p-2">
               <span class="p-0 h1"> APURBA MAITY  </span>
               <span class="p-large px-3"> Software Engineer  </span><br />
               <span class="p-small bold mt-3">ADRESS : </span><span class="p-small"> sankrail, howrah, 711313  </span><br />
@@ -35,9 +37,9 @@ const Templateone = () => {
 
 
             <div class="px-2">
-              <span class="p-0 h3 make_it_blue_font underline1"> EDUCATION  </span><br />
+              <div class="p-0 h3 my-0 make_it_blue_font underline1 w-100"> EDUCATION  </div><br />
 
-              <div class=" make_bg_grey mt-2 p-2">
+              <div class=" make_bg_grey">
                 <span class=" h4">Class 10 </span>
                 <span class=" p-small px-3 "> 2016-2017 </span>  <span class=" p-large px-3 color_blue_2"> 84 % </span><br />
                 <span class=" p-large color_blue_1"> sankrail A.C high school </span>
@@ -50,9 +52,9 @@ const Templateone = () => {
 
 
               {/*-----------------------------------------------------------------------------------------------*/}
-              <span class="p-0 h3 make_it_blue_font underline1">  PROJECTS  </span><br />
+              <div class="p-0 h3 my-0 make_it_blue_font underline1 w-100"> PROJECTS  </div><br />
 
-              <div class=" make_bg_grey mt-2 p-2">
+              <div class=" make_bg_grey">
                 <span class=" h4">Blood Bank Application</span>
                 <span class=" p-small px-3">08/2022 - 10/2022</span>
                 <span class=" p-small px-3 make_it_link ">github link</span>  <br></br>
@@ -76,10 +78,9 @@ const Templateone = () => {
               </div>
 
 
+              <div class="p-0 h3 my-0 make_it_blue_font underline1 w-100"> EXPERIENCES  </div><br />
 
-              <span class="p-0 h3 make_it_blue_font underline1"> EXPERIENCES  </span><br />
-
-              <div class=" make_bg_grey mt-2 p-2">
+              <div class=" make_bg_grey">
                 <span class=" h4">Full Stack Engineer</span>
                 <span class=" p-large px-3 ">companyname</span>
                 <span class=" p-small px-3">08/2022 - 10/2022</span><br />
@@ -94,24 +95,25 @@ const Templateone = () => {
               </div>
 
 
-              <span class="p-0 h3 make_it_blue_font underline1"> SKILLS  </span><br />
+              <div class="p-0 h3 my-0 make_it_blue_font underline1 w-100"> SKILLS  </div><br />
+
 
               <div class="d-flex flex-row flex-wrap p-large">
-                <div class="px-3  make_bg_grey m-2">c++</div>
-                <div class="px-3  make_bg_grey m-2">c++</div>
-                <div class="px-3  make_bg_grey m-2">c++</div>
-                <div class="px-3  make_bg_grey m-2">c++</div>
-                <div class="px-3  make_bg_grey m-2">Software Engineering</div>
-                <div class="px-3  make_bg_grey m-2">Machine Learning</div>
+                <div class="px-3  make_bg_grey">c++</div>
+                <div class="px-3  make_bg_grey">c++</div>
+                <div class="px-3  make_bg_grey">c++</div>
+                <div class="px-3  make_bg_grey">c++</div>
+                <div class="px-3  make_bg_grey">Software Engineering</div>
+                <div class="px-3  make_bg_grey">Machine Learning</div>
               </div>
+              <div class="p-0 h3 my-0 make_it_blue_font underline1 w-100"> ACHIVMENTS AND CERTIFICATION   </div><br />
 
-              <span class="p-0 h3 make_it_blue_font underline1"> ACHIVMENTS AND CERTIFICATION  </span><br />
 
-              <div class=" make_bg_grey mt-2 p-2">
+              <div class=" make_bg_grey">
                 <span class=" h6">Achived 1000 rank in codevita 2021 </span>
                 <span class=" p-small px-3 make_it_link "> cirtificate </span>  <br></br>
               </div>
-              <div class=" make_bg_grey mt-2 p-2">
+              <div class=" make_bg_grey mt-1">
                 <span class=" h6">Achived 1000 rank in codevita 2021 </span>
                 <span class=" p-small px-3 make_it_link "> cirtificate </span>  <br></br>
               </div>
@@ -131,9 +133,9 @@ const Templateone = () => {
       </div>
 
 
-    </>
+    </div>
 
   )
 }
 
-export default Templateone;
+export default Templatefour;

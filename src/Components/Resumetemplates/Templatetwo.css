@@ -34,9 +34,13 @@
     color : white ;
 }
 
-.templateone .personal_details{
-    background-color : #17a9e4;
+.templatetwo .personal_details{
+    color : #17a9e4;
 }
-.templateone .make_it_blue_font{
-    color : #17a9e4 ;
+.templatetwo .make_it_blue_font{
+    color : white ;
+}
+.templatetwo .make_it_blue_font{
+    width : 100% ;
+    background-color : #17a9e4 ;
 }

@@ -11,6 +11,11 @@ import {
 // import components from './components'
 import Navbar from './Components/Navbar/Navbar'
 import Templateone from './Components/Resumetemplates/Templateone'
+import Templatetwo from './Components/Resumetemplates/Templatetwo'
+import Templatethree from './Components/Resumetemplates/Templatethree'
+
+import Templatefour from './Components/Resumetemplates/Templatefour'
+
 import Home from './Components/Homescreen/Home'
 import Userchooseme from './Components/Userchooseme/Userchooseme'
 import Personal from './Components/Resumedetails/Personal'
@@ -52,7 +57,7 @@ function App() {
       </Routes>
 
       <Routes>
-        <Route path="/showresults/:id" element={<Templateone />} />
+        <Route path="/showresults/:id" element={<Templatefour />} />
       </Routes>
 
 
