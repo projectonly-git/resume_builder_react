@@ -35,7 +35,7 @@ const Home = () => {
             </div>
             <div class=" d-flex justify-content-center py-4 " onClick={gotomedicalsoftware}>
               <div class=" top_header_button h4 p-3 cursor_pointer">
-                Start For Free Now
+                Create Your Resume Now
                 <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
               </div>
             </div>

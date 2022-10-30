@@ -36,6 +36,10 @@ function App() {
       </Routes>
 
       <Routes>
+        <Route path="/choosetemplates" element={<Templategallery />} />
+      </Routes>
+
+      <Routes>
         <Route path="/enterpersonaldetails/:templateId" element={<Personal />} />
       </Routes>
 
@@ -51,18 +55,17 @@ function App() {
         <Route path="/enterskills" element={<Skills />} />
       </Routes>
 
-
       <Routes>
         <Route path="/enterachivments" element={<Achivments />} />
       </Routes>
+
+
 
       <Routes>
         <Route path="/showresults/:id" element={<Templatethree />} />
       </Routes>
 
-      <Routes>
-        <Route path="/choosetemplates" element={<Templategallery />} />
-      </Routes>
+
 
 
 

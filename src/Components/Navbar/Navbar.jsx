@@ -19,7 +19,7 @@ const Navbar = () => {
             <div class=" row py-2 ">
 
               <div class=" col-lg-4 ">
-                <a class="cursor_pointer" href="/"><h3 style={{ "color": "#3c4852" }}> Rebuilder </h3></a>
+                <a class="cursor_pointer" href="/"><h3 style={{ "color": "#3c4852" }}> Resume Maker </h3></a>
               </div>
 
               <div class=" col-lg-8 ">

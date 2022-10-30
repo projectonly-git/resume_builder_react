@@ -39,7 +39,7 @@ const Templategallery = () => {
                     <img src="template1.jpg"></img>
                   </div>
                   <div class="text-white p-large d-flex justify-content-center">
-                    <div class="input_box_text_templategallery p-2 cursor_pointer" onClick={() => chooseTemplate(2)}>
+                    <div class="input_box_text_templategallery p-2 cursor_pointer" onClick={() => chooseTemplate(1)}>
                       Choose It
                     </div>
                   </div>
