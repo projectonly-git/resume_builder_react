@@ -1,0 +1,22 @@
+img{
+    width:70%;
+}
+
+.col-lg-6{
+    display : flex;
+    align-items: center;
+}
+
+.top_header_button{
+    background-color : #3c4852;
+    border-radius : 10px ;
+}
+
+.doctor{
+    background-color : #f5f5f5;
+    border-radius : 30px
+}
+
+.i_am_medical{
+    align-items: center;
+}

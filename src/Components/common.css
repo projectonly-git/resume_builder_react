@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amaranth&display=swap');
+
+h1,
+.h1 {
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 3.25rem;
+  letter-spacing: 0.5px;
+  font-family: 'Secular One', sans-serif;
+}
+
+h2,
+.h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  letter-spacing: 0.4px;
+  font-family: 'Secular One', sans-serif;
+}
+
+h3,
+.h3 {
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  letter-spacing: 0.2px;
+  font-family: 'Secular One', sans-serif;
+}
+
+h4,
+.h4 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  letter-spacing: 0.2px;
+  font-family: 'Secular One', sans-serif;
+}
+
+h5,
+.h5 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-family: 'Secular One', sans-serif;
+}
+
+h6,
+.h6 {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-family: 'Secular One', sans-serif;
+
+}
+
+.p-large {
+  font-size: 1.15rem;
+  line-height: 1.75rem;
+  font-family: 'Amaranth', sans-serif;
+}
+
+.p-small {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  font-family: 'Amaranth', sans-serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.cursor_pointer:hover {
+  cursor: pointer;
+}
+
+.color_blue_1 {
+  color: #2897bd;
+}
+
+textarea {
+  overflow: hidden;
+  border: none;
+  width: 100%;
+  height: 100px;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  border: none;
+}
+a:hover{
+  text-decoration: none;
+  border: none;
+}
+
+.fixed-top{
+  position: fixed;
+}
+
+
+
+
+
+
+
+
+
+
+@media print {
+  .outerNavbar {
+    display: none;
+  }
+  .padding{
+    display : none ;
+  }
+  .print_button {
+    display: none;
+  }
+
+  .print_button {
+    background-color: #3c4852;
+    color: white;
+    width: 50%;
+    border-radius: 10px;
+  }
+
+  .btn {
+    display: none;
+  }
+
+
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+  }
+}

@@ -1,0 +1,55 @@
+.heading{
+    background-color : #f5f5f5;
+    border-radius: 30px;
+}
+
+.input_box_text{
+    border : none;
+    height : 60px;
+    border-radius: 10px;
+    border : 2px solid #475b75;
+}
+input{
+    border : none;
+    height : 50px;
+    border-radius: 10px;
+}
+input:focus{
+    outline : none;
+}
+
+
+.each_box{
+    width : 40%;
+}
+.each_box1_personal{
+    width : 30%;
+}
+
+.top_header_button{
+    background-color : #3c4852;
+    color : white;
+    border-radius : 10px ;
+}
+.top_header_button1{
+    border :  2px solid #3c4852;
+    color : #3c4852;
+    border-radius : 10px ;
+}
+
+.flexbox_side{
+    width:45%;
+}
+
+.input_box_text_area_project{
+    border : none;
+    height : 120px;
+    border-radius: 10px;
+    border : 2px solid #475b75;
+}
+.save_and_preview{
+    background-color : #3c4852;
+    color : white ;
+    border-radius: 20px;
+    height : 60px ;
+}
