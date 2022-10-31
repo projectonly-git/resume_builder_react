@@ -24,11 +24,23 @@ import Projects from './Components/Resumedetails/Projects'
 import Skills from './Components/Resumedetails/Skills'
 import Achivments from './Components/Resumedetails/Achivments'
 
+
+import Login from './Components/Loginregister/Login'
+import Register from './Components/Loginregister/Register'
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/register" element={<Register />} />
       </Routes>
 
       <Routes>
@@ -40,29 +52,29 @@ function App() {
       </Routes>
 
       <Routes>
-        <Route path="/enterpersonaldetails/:templateId" element={<Personal />} />
+        <Route path="/enterpersonaldetails/:resumeId/:templateId" element={<Personal />} />
       </Routes>
 
       <Routes>
-        <Route path="/entereducationaldetails" element={<Education />} />
+        <Route path="/entereducationaldetails/:resumeId/:templateId" element={<Education />} />
       </Routes>
 
       <Routes>
-        <Route path="/enterprojectdetails" element={<Projects />} />
+        <Route path="/enterprojectdetails/:resumeId/:templateId" element={<Projects />} />
       </Routes>
 
       <Routes>
-        <Route path="/enterskills" element={<Skills />} />
+        <Route path="/enterskills/:resumeId/:templateId" element={<Skills />} />
       </Routes>
 
       <Routes>
-        <Route path="/enterachivments" element={<Achivments />} />
+        <Route path="/enterachivments/:resumeId/:templateId" element={<Achivments />} />
       </Routes>
 
 
 
       <Routes>
-        <Route path="/showresults/:id" element={<Templatethree />} />
+        <Route path="/showresults/:resumeId/:templateId" element={<Templatethree />} />
       </Routes>
 
 

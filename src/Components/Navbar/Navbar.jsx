@@ -28,10 +28,10 @@ const Navbar = () => {
                     About
                   </div>
                   <div class=" py-1 px-3 p-small cursor_pointer ">
-                    <a href="/#learn" style={{"color":"#7e898a"}}>Learn </a>
+                    <a href="/#learn" style={{ "color": "#7e898a" }}>Learn </a>
                   </div>
                   <div class=" py-1 px-3 p-small login_border cursor_pointer ">
-                    Login / Signup
+                    <a href="/login" style={{"color" : "black"}}>Login / Signup</a>
                   </div>
                 </div>
               </div>

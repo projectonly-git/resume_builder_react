@@ -12,8 +12,10 @@ const Templategallery = () => {
   const navigate = useNavigate();
 
   const chooseTemplate = (templateId) => {
+    // create the resume with a 6 digit random id and get the resumeId
+    const resumeId = 100
     console.log(templateId)
-    const link = "/enterpersonaldetails/" + templateId
+    const link = "/enterpersonaldetails/" + resumeId +"/" + templateId
     navigate(link)
   }
 
