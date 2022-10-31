@@ -17,7 +17,7 @@ import Templatethree from './Components/Resumetemplates/Templatethree'
 import Templatefour from './Components/Resumetemplates/Templatefour'
 
 import Home from './Components/Homescreen/Home'
-import Userchooseme from './Components/Userchooseme/Userchooseme'
+import Userchooseme2 from './Components/Userchooseme/Userchooseme2'
 import Personal from './Components/Resumedetails/Personal'
 import Education from './Components/Resumedetails/Education'
 import Projects from './Components/Resumedetails/Projects'
@@ -32,7 +32,7 @@ function App() {
       </Routes>
 
       <Routes>
-        <Route path="/userchooseme" element={<Userchooseme />} />
+        <Route path="/userchooseme" element={<Userchooseme2 />} />
       </Routes>
 
       <Routes>
