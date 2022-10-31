@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Navbar from '../Navbar/Navbar'
 import './Resumedetails.css'
@@ -8,18 +8,20 @@ import '../common.css'
 
 const Personal = () => {
 
-  const navigate = useNavigate();
+  const { templateId, resumeId } = useParams()
 
-  const goPrevious = () => {
-    navigate('/entereducationaldetails')
+  const saveThePersonal = () =>{
+    console.log("save the details ")
   }
 
-  const goNext = () => {
-    navigate('/entereducationaldetails')
-  }
+
+
+
+
+
   return (
 
-    <>
+    <div class="enter_resume_details">
 
       <Navbar />
 
@@ -143,13 +145,13 @@ const Personal = () => {
           <div class="p-large  text-white px-3" >
 
           </div>
-          <div class="p-large cursor_pointer text-white px-3" onClick={goNext}>
-            <span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i>
+          <div class="p-large cursor_pointer text-white px-3" onClick={saveThePersonal}>
+            <a href={"/entereducationaldetails/"+resumeId+"/"+templateId}><span class="px-2 text-white">Go Next </span>  <i class="fa fa-forward text-white" aria-hidden="true"></i> </a>
           </div>
         </div>
 
         <div class="d-flex flex-row justify-content-center my-5 ">
-          <a href={"/showresults/"+12} >
+          <a href={"/showresults/" + resumeId + "/" + templateId } >
             <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3">
               <span class="px-2">SAVE AND PREVIEW </span>
             </div>
@@ -170,7 +172,7 @@ const Personal = () => {
 
 
 
-    </>
+    </div>
   )
 }
 
