@@ -25,20 +25,26 @@ const Userchooseme2 = () => {
             <div class="chooseouter container mt-3">
                 <div class="doctor mt-2 p-3">
                     <div class="row">
-                        <div class="col-6">
-                        <div class="col-12 med d-flex justify-content-center">
-                                <div class="d-flex align-items-center">
-                                    MEDICAL
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="col-6">
-                            <div class="col-12 sof d-flex justify-content-center">
-                                <div class="d-flex align-items-center">
-                                    SOFTWARE
+                            <a class="p-small" href="/choosetemplates">
+                                <div class="col-12 med d-flex justify-content-center">
+                                    <div class="d-flex align-items-center">
+                                        MEDICAL
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-6">
+                            <a class="p-small" href="/choosetemplates">
+                                <div class="col-12 sof d-flex justify-content-center">
+                                    <div class="d-flex align-items-center">
+                                        SOFTWARE
+                                    </div>
+                                </div>
+                            </a>
                         </div>
 
                     </div>

@@ -41,8 +41,8 @@ const Templategallery = () => {
                     <img src="template1.jpg"></img>
                   </div>
                   <div class="text-white p-large d-flex justify-content-center">
-                    <div class="input_box_text_templategallery p-2 cursor_pointer" onClick={() => chooseTemplate(1)}>
-                      Choose It
+                    <div class="input_box_text_templategallery px-4 p-2 cursor_pointer" onClick={() => chooseTemplate(1)}>
+                      use
                     </div>
                   </div>
                 </div>
@@ -56,8 +56,8 @@ const Templategallery = () => {
                   </div>
 
                   <div class="text-white p-large d-flex justify-content-center">
-                    <div class="input_box_text_templategallery p-2 cursor_pointer" onClick={() => chooseTemplate(2)}>
-                      Choose It
+                    <div class="input_box_text_templategallery px-4 p-2 cursor_pointer" onClick={() => chooseTemplate(2)}>
+                      use
                     </div>
                   </div>
                 </div>
@@ -69,8 +69,8 @@ const Templategallery = () => {
                     <img src="template3.jpg"></img>
                   </div>
                   <div class="text-white p-large d-flex justify-content-center">
-                    <div class="input_box_text_templategallery p-2 cursor_pointer" onClick={() => chooseTemplate(3)}>
-                      Choose It
+                    <div class="input_box_text_templategallery px-4 p-2 cursor_pointer" onClick={() => chooseTemplate(3)}>
+                      use
                     </div>
                   </div>
                 </div>
@@ -82,8 +82,8 @@ const Templategallery = () => {
                     <img src="template4.jpg"></img>
                   </div>
                   <div class="text-white p-large d-flex justify-content-center">
-                    <div class="input_box_text_templategallery p-2 cursor_pointer" onClick={() => chooseTemplate(4)}>
-                      Choose It
+                    <div class="input_box_text_templategallery px-4 p-2 cursor_pointer" onClick={() => chooseTemplate(4)}>
+                      use
                     </div>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amaranth&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 h1,
 .h1 {
   font-weight: 700;
@@ -55,15 +55,15 @@ h6,
 }
 
 .p-large {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   line-height: 1.75rem;
-  font-family: 'Amaranth', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .p-small {
-  font-size: 1.25rem;
+  font-size: .95rem;
   line-height: 1.5rem;
-  font-family: 'Amaranth', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .bold {

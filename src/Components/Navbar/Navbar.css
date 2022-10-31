@@ -2,34 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Amaranth&display=swap');
 
 
-.outerNavbar h3{
-    font-family: 'Secular One', sans-serif;
-}
-
-.outerNavbar .h1{
-    font-weight: 700;
-	font-size: 3rem;
-	line-height: 4.25rem;
-	letter-spacing: 1px;
-    font-family: 'Secular One', sans-serif;
-    
-}
-
-.outerNavbar .p-small{
-    font-size: 1.125rem;
-	line-height: 1.5rem;
-    letter-spacing: 1px;
-    font-family: 'Amaranth', sans-serif;
-    
-}
-
-.outerNavbar .p-large{
-    font-size: 1.5rem;
-	line-height: 1.75rem;
-    letter-spacing: 1px;
-    font-family: 'Amaranth', sans-serif;
-}
-
 .outerNavbar .login_border{
     border : 1px solid #778087;
     border-radius : 5px;

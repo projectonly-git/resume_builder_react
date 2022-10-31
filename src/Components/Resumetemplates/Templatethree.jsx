@@ -124,10 +124,10 @@ const Templatethree = () => {
       </div>
 
 
-      <div class="container print_button">
+      <div class="w-50 container print_button">
         <div class="d-flex flex-row justify-content-center my-5 border-bottom-link">
-          <div class="p-large cursor_pointer text-white px-3" onClick={printDocument}>
-            <span class="px-2">Download And Land Your Dream Job </span>
+          <div class="py-4 p-large cursor_pointer text-white px-3" onClick={printDocument}>
+            <span class="px-2">Download</span>
           </div>
         </div>
       </div>

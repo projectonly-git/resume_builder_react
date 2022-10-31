@@ -28,6 +28,7 @@ img{
     box-shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.489);
     transition-duration: 400ms;
     color: antiquewhite;
+    font-size: 22px;
 }
 
 .med:hover{
@@ -40,6 +41,8 @@ img{
     padding:3%;
     box-shadow: 0px 0px 16px 6px rgba(0, 0, 0, 0.489);
     transition-duration: 400ms;
+    color: #2d3033;
+    font-size: 22px;
 }
 
 .sof:hover{
