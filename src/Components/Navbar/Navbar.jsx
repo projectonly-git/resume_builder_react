@@ -13,7 +13,7 @@ const Navbar = () => {
 
 
     <>
-      <div class=" outerNavbar " >
+      <div id="navbar" class=" outerNavbar " >
         <div class=" innerNavbar" >
           <div class=" container ">
             <div class=" row py-2 ">

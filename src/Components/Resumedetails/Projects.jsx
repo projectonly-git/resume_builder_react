@@ -8,15 +8,72 @@ import '../common.css'
 
 const Projects = () => {
   const { templateId, resumeId } = useParams()
-
   const navigate = useNavigate();
 
-  const goPrevious = () => {
+  const [posw, setPosw] = useState("")
+  const [companyw, setCompanyw] = useState("")
+  const [workdw, setWorkdw] = useState("")
 
+
+
+
+  // getting existing details for show in loop
+  const [existingdetails, setExistingdetails] = useState([{ position: "", company: "", starttime: "", endtime: "", workd: "" }])
+  const [makeformdata, setMakeformdata] = useState({ position: "", company: "", starttime: "", endtime: "", workd: "" })
+
+  const update = (event) => {
+    let val = event.target.value
+    let name = event.target.name
+    setMakeformdata((prev) => {
+      if (name === "position") {
+        return { position: val, company: prev.company, starttime: prev.starttime, endtime: prev.endtime, workd: prev.workd }
+      } else if (name === "company") {
+        return { position: prev.position, company: val , starttime: prev.starttime, endtime: prev.endtime, workd: prev.workd }
+      } else if (name === "starttime") {
+        return { position: prev.position, company: prev.company, starttime: val , endtime: prev.endtime, workd: prev.workd }
+      } else if (name === "endtime") {
+        return {  position: prev.position, company: prev.company, starttime: prev.starttime, endtime: val , workd: prev.workd }
+      } else {
+        return { position: prev.position, company: prev.company, starttime: prev.starttime, endtime: prev.endtime, workd: val }
+      }
+    })
+    //console.log(makeformdata)
   }
 
-  const goNext = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+
+  const saveThisExperience = () =>{
+    var flag = true ;
+    if(makeformdata.position === ""){
+      setPosw("Please enter your position")
+      flag = false;
+    }else{
+      setPosw("")
+    }
+
+    if(makeformdata.company === ""){
+      setCompanyw("Please enter your company")
+      flag = false;
+    }else{
+      setCompanyw("")
+    }
+
+    if(makeformdata.workd === ""){
+      setWorkdw("Please enter your work description")
+      flag = false;
+    }else{
+      setWorkdw("")
+    }
+    console.log(makeformdata)
   }
+
+
+
+
   return (
 
     <div class="enter_resume_details">
@@ -30,7 +87,7 @@ const Projects = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 ">
-              <h2> EXISTING PROJECT DETAILS </h2>
+              <h2> EXISTING WORK EXPERIENCES </h2>
             </div>
 
             <div class="heading mt-2 p-3">
@@ -84,19 +141,33 @@ const Projects = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 w-100">
-              <h2> ENTER NEW PROJECT </h2>
+              <h2> ENTER WORK DETAILS </h2>
             </div>
 
             <div class="mt-3">
               <div class=" ">
-                <div class="h4"> Enter The Project Name </div>
+                <div class="h4"> Enter The Position </div>
               </div>
               <div class="input_box_text px-3 d-flex flex-row">
                 <div class="px-3 py-2">
                   <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
                 </div>
-                <input class="w-100  p-large" type="text" placeholder="eg.. Face mask recognition using ML" />
+                <input onChange={update} name="position" class="w-100  p-large" type="text" placeholder="eg.. SDE - III" />
               </div>
+              <div class="p-small text-danger py-2"> {posw} </div>
+            </div>
+
+            <div class="mt-3">
+              <div class=" ">
+                <div class="h4"> Enter Company name </div>
+              </div>
+              <div class="input_box_text px-3 d-flex flex-row">
+                <div class="px-3 py-2">
+                  <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
+                </div>
+                <input name="company" onChange={update} class="w-100  p-large" type="text" placeholder="eg.. Alphabet" />
+              </div>
+              <div class="p-small text-danger py-2"> {companyw} </div>
             </div>
 
 
@@ -106,42 +177,30 @@ const Projects = () => {
               </div>
               <div class="d-flex flex-row">
                 <div class="">
-                  <input class=" input_box_text px-3 p-large" type="text" placeholder="start eg.. MM/YYYY" />
+                  <input name="starttime" onChange={update} class=" input_box_text px-3 p-large" type="text" placeholder="start eg.. MM/YYYY" />
                 </div>
                 <div class="px-3 ">
-                  <input class=" input_box_text px-3 p-large" type="text" placeholder="end eg.. MM/YYYY" />
+                  <input name="endtime" onChange={update} class=" input_box_text px-3 p-large" type="text" placeholder="end eg.. MM/YYYY" />
                 </div>
               </div>
             </div>
 
             <div class="mt-3">
               <div class="">
-                <div class="h4"> Enter Project Details </div>
+                <div class="h4"> Enter Work Description </div>
               </div>
               <div class="input_box_text_area_project px-3 d-flex flex-row">
                 {/*<textbox class="w-100  p-large" type="text" placeholder="eg.. 90" />*/}
-                <textarea class="p-small">
-                  At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
-                </textarea>
+                <textarea name="workd" onChange={update} class="p-small" placeholder="enter work description"></textarea>
               </div>
+              <div class="p-small text-danger py-2"> {workdw} </div>
             </div>
 
-            <div class="mt-3">
-              <div class="">
-                <div class="h4"> Enter github project link </div>
-              </div>
-              <div class="input_box_text px-3 d-flex flex-row">
-                <div class="px-3 py-2">
-                  <i class="fa fa-link fa-2x" aria-hidden="true"></i>
-                </div>
-                <input class="w-100  p-small" type="text" placeholder="eg.. https://github.com/apurbamaity/blood_bank_react" />
-              </div>
-            </div>
 
             <div class="mt-2">
 
-              <div class="top_header_button h5 p-3 w-100 cursor_pointer text-center">
-                Add This Project
+              <div class="top_header_button h5 p-3 w-100 cursor_pointer text-center" onClick={saveThisExperience}>
+                Add This Experince
                 <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
               </div>
             </div>
@@ -153,11 +212,11 @@ const Projects = () => {
         </div>
 
         <div class="d-flex flex-row justify-content-between my-5 border-bottom-link">
-          <div class="p-large cursor_pointer text-white px-3" onClick={goPrevious}>
+          <div class="p-large cursor_pointer text-white px-3" >
             <a href={"/entereducationaldetails/" + resumeId + "/" + templateId} class="text-white"><i class="fa fa-backward" aria-hidden="true"></i>
               <span class="px-2">Go Previous </span></a>
           </div>
-          <div class="p-large cursor_pointer text-white px-3" onClick={goNext}>
+          <div class="p-large cursor_pointer text-white px-3" >
             <a href={"/enterskills/" + resumeId + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i></a>
           </div>
         </div>
