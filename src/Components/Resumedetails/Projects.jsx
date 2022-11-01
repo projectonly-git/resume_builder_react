@@ -177,10 +177,10 @@ const Projects = () => {
               </div>
               <div class="d-flex flex-row">
                 <div class="">
-                  <input name="starttime" onChange={update} class=" input_box_text px-3 p-large" type="text" placeholder="start eg.. MM/YYYY" />
+                  <input name="starttime" onChange={update} class=" input_box_text px-3 p-large" type="date" placeholder="start eg.. MM/YYYY" />
                 </div>
                 <div class="px-3 ">
-                  <input name="endtime" onChange={update} class=" input_box_text px-3 p-large" type="text" placeholder="end eg.. MM/YYYY" />
+                  <input name="endtime" onChange={update} class=" input_box_text px-3 p-large" type="date" placeholder="end eg.. MM/YYYY" />
                 </div>
               </div>
             </div>
