@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Navbar from '../Navbar/Navbar'
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 
 
 import '../common.css';
@@ -9,14 +11,25 @@ import './Templategallery.css'
 
 const Templategallery = () => {
 
-  const navigate = useNavigate();
+  const [rid, setRid] = useState()
 
-  const chooseTemplate = (templateId) => {
-    // create the resume with a 6 digit random id and get the resumeId
-    const resumeId = 100
+  const navigate = useNavigate();
+  var resumeId = 100;
+
+  async function chooseTemplate(templateId){
     console.log(templateId)
-    const link = "/enterpersonaldetails/" + resumeId +"/" + templateId
-    navigate(link)
+    // create the resume with a 6 digit random id and get the resumeId
+    await axios.get(process.env.REACT_APP_SERVER_URL + '/createresume', { params: { emailid: localStorage.getItem('emailid'), templateid: templateId } })
+      .then((response) => {
+        setRid(response.data)
+        const link = "/enterpersonaldetails/" + response.data + "/" + templateId
+        navigate(link)
+      }, (error) => { })
+
+
+
+    //console.log(rid)
+
   }
 
 

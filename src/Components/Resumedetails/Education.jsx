@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+
+
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Navbar from '../Navbar/Navbar'
 import './Resumedetails.css'
@@ -10,19 +16,39 @@ const Education = () => {
   const { templateId, resumeId } = useParams()
 
 
+
   const navigate = useNavigate();
-  const [value, setValue] = useState("2000") ; // for end year  
-  const [start, setStart] = useState("2000") ; // start year
+  const [value, setValue] = useState("2000"); // for end year  
+  const [start, setStart] = useState("2000"); // start year
   const [insw, setInsw] = useState(""); const [degreew, setDegreew] = useState(""); // for warnings
   const [showorhide, setShoworhide] = useState("")
 
   // getting existing details for show in loop
-  const [existingdetails, setExistingdetails] = useState([{ class: "10", institution: "sachs", startyear: "2016", endyear: "2018", marks: "84.43" }])
+  const [existingdetails, setExistingdetails] = useState([])
 
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    getAlleducation();
   }, [])
+
+
+  const deleteEducation = (eid) => {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/deleteeducationdetails/' + eid)
+      .then((response) => {
+        console.log(response.data)
+        window.location.reload();
+      }, (error) => { })
+  }
+
+
+  const getAlleducation = () => {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/getalleducation/' + resumeId)
+      .then((response) => {
+        console.log(response.data)
+        setExistingdetails(response.data)
+      }, (error) => { })
+  }
 
   // for handling form input
   const [makeformdata, setMakeformdata] = useState({
@@ -100,16 +126,39 @@ const Education = () => {
       setDegreew("")
     }
 
-    if(flag){
-      navigate("/enterprojectdetails/" + resumeId + "/" + templateId) ;
+    if (flag) {
+
+      var education = {};
+      education.course = makeformdata.class
+      education.institution = makeformdata.institution
+      education.startyear = makeformdata.startyear
+      education.endyear = makeformdata.endyear
+      education.marks = makeformdata.marks
+
+      console.log(education)
+
+
+
+
+      axios.post(process.env.REACT_APP_SERVER_URL + '/saveeducationdetails/' + resumeId, education)
+        .then((response) => {
+          console.log(response.data)
+          getAlleducation()
+          //setBlood(response.data)
+        }, (error) => { })
+      toast.success("🚫 addedd this education", {
+        position: "top-right", autoClose: 1000,
+      })
+      window.location.reload()
+
     }
 
-    console.log(makeformdata)
+    //console.log(makeformdata)
   }
 
   return (
-
     <div class="enter_resume_details">
+      <ToastContainer />
 
       <Navbar />
 
@@ -130,7 +179,7 @@ const Education = () => {
 
 
                 <div class=" ">
-                  <div class="h2"> {d.class} </div>
+                  <div class="h2"> {d.course} </div>
                 </div>
 
                 <div class=" ">
@@ -150,19 +199,19 @@ const Education = () => {
 
                   <div class="mt-2 each_box">
 
-                    <div class="top_header_button1 p-large p-3 w-100 cursor_pointer">
+                    <div class="top_header_button1 p-large p-3 w-100 cursor_pointer" onClick={()=>deleteEducation(d.eduid)}>
                       delete
                       <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
                     </div>
                   </div>
 
-                  <div class="px-3 mt-2 each_box">
+                  {/*<div class="px-3 mt-2 each_box">
 
                     <div class="top_header_button p-large p-3 w-100 cursor_pointer"  >
                       Edit
                       <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
                     </div>
-                  </div>
+            </div>*/}
 
                 </div>
 
@@ -247,7 +296,7 @@ const Education = () => {
                 <div class="px-3 ">
                   <div class="h5"> Course End Year </div>
                   {/*<input onChange={update} name="endyear" class=" input_box_text px-3 p-large" type="number" value={makeformdata.endyear} />*/}
-                  <div class={"input_box_text py-3 px-4 h6 " + showorhide }>
+                  <div class={"input_box_text py-3 px-4 h6 " + showorhide}>
                     <select value={value} onChange={handleChangeEnd}>
                       <option value='2000'>2000</option>
                       <option value='2001'>2001</option>
@@ -326,9 +375,9 @@ const Education = () => {
 
         <div class="d-flex flex-row justify-content-center my-5 ">
           <a href={"/showresults/" + resumeId + "/" + templateId} >
-            <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3">
-              <span class="px-2">SAVE AND PREVIEW </span>
-            </div>
+          <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3" >
+            <span class="px-2">SAVE AND PREVIEW </span>
+          </div>
           </a>
         </div>
 

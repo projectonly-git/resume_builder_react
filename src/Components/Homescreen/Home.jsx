@@ -8,6 +8,10 @@ import '../common.css'
 const Home = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    //window.location.reload()
+ }, []);
+
 
   const printDocument = () => {
     window.print();

@@ -28,31 +28,37 @@ const Login = () => {
     console.log(formdata)
   }
 
-  /*const trytologin = () => {
+  const trytologin = () => {
+
     let user = {
-      "username": formdata.email,
-      "password": formdata.password,
+      "emailid": formdata.email,
+      "password": formdata.password
     }
 
     axios.post(process.env.REACT_APP_SERVER_URL + "/user/login", user)
       .then((response) => {
         console.log(response.data)
-        console.log("hererer")
+        localStorage.setItem("emailid", response.data.emailid)
+        localStorage.setItem("username", response.data.username)
 
-        if (response.data == '') {
+
+
+        if (response.data === '') {
           console.log("no no no")
           toast.error("Password not match", {
             position: "top-right", autoClose: 2000,
           })
         } else {
-          setloggedinuser(response.data)
-          history.push({
-            pathname: '/',
-          });
+          toast.success("Login Success return to home", {
+            position: "top-right", autoClose: 2000,
+          })
         }
       }, (error) => {
+        toast.error("Email Not preasent! register", {
+          position: "top-right", autoClose: 2000,
+        })
       })
-  }*/
+  }
 
   return (
 
@@ -98,11 +104,14 @@ const Login = () => {
                   </div>
                 </div>
 
-                <div class="h2 text-center mt-3  login_button p-3 cursor_pointer">
+                <div class="h2 text-center mt-3  login_button p-3 cursor_pointer" onClick={trytologin} >
                   LOG IN <i class="fa-solid fa-fingerprint"></i>
                 </div>
                 <div class="p-small register_here make_it_pointer text-center cursor_pointer">
-                  <a href="/register" style={{"color" : "#3c4852"}}>don't have an account register </a>
+                  <a href="/register" style={{ "color": "#3c4852" }}>don't have an account register </a>
+                </div>
+                <div class="p-small register_here make_it_pointer text-center cursor_pointer">
+                  <a href="/" style={{ "color": "red" }}>return to home </a>
                 </div>
 
 

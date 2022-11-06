@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Navbar from '../Navbar/Navbar'
 import './Resumedetails.css'
@@ -7,6 +12,10 @@ import '../common.css'
 
 
 const Projects = () => {
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
   const { templateId, resumeId } = useParams()
   const navigate = useNavigate();
 
@@ -18,7 +27,7 @@ const Projects = () => {
 
 
   // getting existing details for show in loop
-  const [existingdetails, setExistingdetails] = useState([{ position: "", company: "", starttime: "", endtime: "", workd: "" }])
+  const [existingdetails, setExistingdetails] = useState([])
   const [makeformdata, setMakeformdata] = useState({ position: "", company: "", starttime: "", endtime: "", workd: "" })
 
   const update = (event) => {
@@ -28,11 +37,11 @@ const Projects = () => {
       if (name === "position") {
         return { position: val, company: prev.company, starttime: prev.starttime, endtime: prev.endtime, workd: prev.workd }
       } else if (name === "company") {
-        return { position: prev.position, company: val , starttime: prev.starttime, endtime: prev.endtime, workd: prev.workd }
+        return { position: prev.position, company: val, starttime: prev.starttime, endtime: prev.endtime, workd: prev.workd }
       } else if (name === "starttime") {
-        return { position: prev.position, company: prev.company, starttime: val , endtime: prev.endtime, workd: prev.workd }
+        return { position: prev.position, company: prev.company, starttime: val, endtime: prev.endtime, workd: prev.workd }
       } else if (name === "endtime") {
-        return {  position: prev.position, company: prev.company, starttime: prev.starttime, endtime: val , workd: prev.workd }
+        return { position: prev.position, company: prev.company, starttime: prev.starttime, endtime: val, workd: prev.workd }
       } else {
         return { position: prev.position, company: prev.company, starttime: prev.starttime, endtime: prev.endtime, workd: val }
       }
@@ -43,32 +52,76 @@ const Projects = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    getAllexp()
   }, [])
 
+  const deleteExperience = (xpid) => {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/deleteexperiencedetails/' + xpid)
+      .then((response) => {
+        console.log(response.data)
+        window.location.reload()
+      }, (error) => { })
+  }
 
-  const saveThisExperience = () =>{
-    var flag = true ;
-    if(makeformdata.position === ""){
+  const getAllexp = () => {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/getallexp/' + resumeId)
+      .then((response) => {
+        console.log(response.data)
+        setExistingdetails(response.data)
+        //setBlood(response.data)
+      }, (error) => { })
+  }
+
+
+  const saveThisExperience = () => {
+    var flag = true;
+    if (makeformdata.position === "") {
       setPosw("Please enter your position")
       flag = false;
-    }else{
+    } else {
       setPosw("")
     }
 
-    if(makeformdata.company === ""){
+    if (makeformdata.company === "") {
       setCompanyw("Please enter your company")
       flag = false;
-    }else{
+    } else {
       setCompanyw("")
     }
 
-    if(makeformdata.workd === ""){
+    if (makeformdata.workd === "") {
       setWorkdw("Please enter your work description")
       flag = false;
-    }else{
+    } else {
       setWorkdw("")
     }
-    console.log(makeformdata)
+
+    if (flag) {
+
+      var exp = {};
+      exp.position = makeformdata.position;
+      exp.company = makeformdata.company
+      exp.starttime = makeformdata.starttime
+      exp.endtime = makeformdata.endtime
+      exp.workd = makeformdata.workd
+
+      axios.post(process.env.REACT_APP_SERVER_URL + '/saveexperiencedetails/' + resumeId, exp)
+        .then((response) => {
+          console.log(response.data)
+          getAllexp()
+          toast.success(" addedd this work experience", {
+            position: "top-center", autoClose: 1000,
+          })
+          window.location.reload()
+        }, (error) => { })
+
+
+    }
+
+
+
+
+    //console.log(makeformdata)
   }
 
 
@@ -77,6 +130,7 @@ const Projects = () => {
   return (
 
     <div class="enter_resume_details">
+      <ToastContainer />
 
       <Navbar />
 
@@ -90,49 +144,57 @@ const Projects = () => {
               <h2> EXISTING WORK EXPERIENCES </h2>
             </div>
 
-            <div class="heading mt-2 p-3">
-
-
-
-              <div class=" ">
-                <div class="h2"> Blood bank Application</div>
-              </div>
-
-              <div class=" ">
-                <div class="h5"> 2016-2017</div>
-              </div>
-              <div class=" ">
-                <div class="p-small"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis molestias tenetur deleniti sed aliquid, obcaecati doloremque nihil nesciunt, sunt asperiores aspernatur repudiandae a veniam, sit ipsam beatae iste odio. Dignissimos, eos quod sapiente nisi magnam blanditiis atque. Facilis, esse. Et corrupti repellendus, dicta voluptatem ratione in quis harum exercitationem, ex sit recusandae ad repellat nam voluptates magni alias dolores, odio molestias maxime reiciendis nobis commodi. Accusamus porro quasi officiis, rem maxime ea sequi vel eos qui unde reprehenderit, cupiditate accusantium illum consequuntur in repellat? Voluptatem tenetur architecto unde dolor tempore ea, aut nulla cum consequatur commodi sed id? Molestiae, voluptatem!
+            {existingdetails.map((d, index) => (
+              <div class="heading mt-2 p-3">
+                <div class=" ">
+                  <div class="h2"> {d.position} </div>
                 </div>
-              </div>
-              <div class="  cursor_pointer mt-3">
-                <div class="p-small color_blue_1"> Project Github Link </div>
-              </div>
+                <div class=" ">
+                  <div class="h4"> {d.company} </div>
+                </div>
 
+                <div class=" mt-3">
+                  <div class="d-flex flex-row">
 
-              <div class="d-flex flex-row">
+                    <div clas="mx-5">
+                      <div class="h6 text-info">
+                        FROM
+                      </div>
+                      <div class="h5"> {d.starttime} </div>
+                    </div>
 
+                    <div class="mx-5">
+                      <div class="h6 text-info">
+                        TO
+                      </div>
+                      <div class="h5"> {d.endtime} </div>
+                    </div>
 
-                <div class="mt-2 each_box">
+                  </div>
 
-                  <div class="top_header_button1 p-large p-3 w-100 cursor_pointer">
-                    delete
-                    <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
+                </div>
+                <div class=" ">
+                  <div class="p-small"> {d.workd}
                   </div>
                 </div>
 
-                <div class="px-3 mt-2 each_box">
 
-                  <div class="top_header_button p-large p-3 w-100 cursor_pointer"  >
-                    Edit
-                    <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
+                <div class="d-flex flex-row">
+
+
+                  <div class="mt-2 each_box">
+
+                    <div class="top_header_button1 p-large p-3 w-100 cursor_pointer" onClick={() => deleteExperience(d.xpid)}>
+                      delete
+                      <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
+                    </div>
                   </div>
                 </div>
-
               </div>
+            ))}
 
 
-            </div>
+
 
 
 

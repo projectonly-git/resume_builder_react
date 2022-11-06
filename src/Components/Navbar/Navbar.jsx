@@ -2,6 +2,41 @@ import React, { useState, useEffect } from "react";
 import './Navbar.css';
 import '../common.css'
 
+import { useNavigate } from "react-router-dom";
+
+
+const Loginprofile = () => {
+
+  const navigate = useNavigate();
+
+  const signout = () =>{
+    localStorage.removeItem('emailid');
+    localStorage.removeItem('username');
+    navigate("/");
+  }
+
+  if (localStorage.getItem("emailid") == null) {
+    return (
+      <>
+        <div class=" py-1 px-3 p-small login_border cursor_pointer ">
+          <a href="/login" style={{ "color": "black" }}>Login / Signup</a>
+        </div>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <div class=" py-1 px-3 p-small login_border cursor_pointer ">
+          <a href="/profile" style={{ "color": "black" }}>{localStorage.getItem("username")}</a>
+        </div>
+        <div class=" py-1 px-3 p-small  cursor_pointer " onClick={signout}>
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        </div>
+      </>
+    )
+  }
+}
+
 const Navbar = () => {
 
 
@@ -30,9 +65,9 @@ const Navbar = () => {
                   <div class=" py-1 px-3 p-small cursor_pointer ">
                     <a href="/#learn" style={{ "color": "#7e898a" }}>Learn </a>
                   </div>
-                  <div class=" py-1 px-3 p-small login_border cursor_pointer ">
-                    <a href="/login" style={{"color" : "black"}}>Login / Signup</a>
-                  </div>
+
+                  <Loginprofile />
+
                 </div>
               </div>
 

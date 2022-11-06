@@ -10,19 +10,18 @@ import {
 
 // import components from './components'
 import Navbar from './Components/Navbar/Navbar'
-import Templateone from './Components/Resumetemplates/Templateone'
-import Templatetwo from './Components/Resumetemplates/Templatetwo'
-import Templatethree from './Components/Resumetemplates/Templatethree'
-import Templatefour from './Components/Resumetemplates/Templatefour'
+import Templatehead from './Components/Resumetemplates/Templatehead'
 import Templategallery from './Components/TemplateSet/Templategallery'
 
 import Home from './Components/Homescreen/Home'
-import Userchooseme2 from './Components/Userchooseme/Userchooseme2'
+import Userchooseme from './Components/Userchooseme/Userchooseme'
 import Personal from './Components/Resumedetails/Personal'
 import Education from './Components/Resumedetails/Education'
 import Projects from './Components/Resumedetails/Projects'
 import Skills from './Components/Resumedetails/Skills'
 import Achivments from './Components/Resumedetails/Achivments'
+
+import Profile from './Components/Profile/Profile'
 
 
 import Login from './Components/Loginregister/Login'
@@ -44,7 +43,11 @@ function App() {
       </Routes>
 
       <Routes>
-        <Route path="/userchooseme" element={<Userchooseme2 />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/userchooseme" element={<Userchooseme />} />
       </Routes>
 
       <Routes>
@@ -67,14 +70,14 @@ function App() {
         <Route path="/enterskills/:resumeId/:templateId" element={<Skills />} />
       </Routes>
 
-      <Routes>
+      {/*<Routes>
         <Route path="/enterachivments/:resumeId/:templateId" element={<Achivments />} />
-      </Routes>
+      </Routes>*/}
 
 
 
       <Routes>
-        <Route path="/showresults/:resumeId/:templateId" element={<Templatethree />} />
+        <Route path="/showresults/:resumeId/:templateId" element={<Templatehead />} />
       </Routes>
 
 

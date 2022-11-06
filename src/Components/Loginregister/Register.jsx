@@ -33,20 +33,26 @@ const Register = () => {
 
 
     let user = {
-      "email": formdata.email,
+      "emailid": formdata.email,
       "username": formdata.username,
       "password": formdata.password
     }
-    /*axios.post(process.env.REACT_APP_SERVER_URL + "/user/register", user)
+
+    console.log(user)
+    axios.post(process.env.REACT_APP_SERVER_URL + "/user/register", user)
       .then((response) => {
+
         console.log(response.data)
         if (response.data == 200) {
+          toast.success("Success ! try login", {
+            position: "top-right", autoClose: 2000,
+          })
         } else if (response.data == 400) {
           toast.error("Email already present! try login", {
             position: "top-right", autoClose: 2000,
           })
         }
-      }, (error) => { })*/
+      }, (error) => { })
 
     console.log(user)
 

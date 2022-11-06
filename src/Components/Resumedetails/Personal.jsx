@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+
 
 import Navbar from '../Navbar/Navbar'
 import './Resumedetails.css'
@@ -49,12 +51,7 @@ const Personal = () => {
     //console.log(makeformdata)
   }
 
-
-
-
-
-
-  const saveThePersonal = () => {
+  const saveThePersonal = (wts) => {
 
     var flag = true
 
@@ -118,16 +115,35 @@ const Personal = () => {
         setEmailw("")
       }
     }
+    if (flag === true && wts === 0) {
+      const resume = {};
+      resume.resumeid = resumeId
+      resume.date = new Date();
+      resume.templateid = templateId
+      resume.username = makeformdata.fullname
+      resume.designation = makeformdata.jobtitle
+      resume.state = makeformdata.state
+      resume.city = makeformdata.city
+      resume.pincode = makeformdata.pincode
+      resume.emailId = makeformdata.email
+      resume.phonenumber = makeformdata.phone
+      resume.linkedin = makeformdata.linkedin
+      resume.github = makeformdata.github
+
+      console.log(resume)
+
+      axios.post(process.env.REACT_APP_SERVER_URL + '/savepersonaldetails/' + localStorage.getItem('emailid'), resume)
+        .then((response) => {
+          console.log(response.data)
+          //setBlood(response.data)
+        }, (error) => { })
 
 
-
-
-
-
-    if (flag === true) {
       navigate("/entereducationaldetails/" + resumeId + "/" + templateId)
+    } else if (flag === true && wts === 1) {
+      navigate("/showresults/" + resumeId + "/" + templateId)
     }
-    console.log(makeformdata)
+    //console.log(makeformdata)
   }
 
 
@@ -311,15 +327,16 @@ const Personal = () => {
           <div class="p-large  text-white px-3" >
 
           </div>
-          <div class="p-large cursor_pointer text-white px-3" onClick={saveThePersonal}>
-
-            <span class="px-2 text-white">Go Next </span>  <i class="fa fa-forward text-white" aria-hidden="true"></i>
-
+          <a href= {"/entereducationaldetails/" + resumeId + "/" + templateId}>
+          <div class="p-large cursor_pointer text-white px-3" >
+            <span class="px-2 text-white">Skip And Go Next </span>  <i class="fa fa-forward text-white" aria-hidden="true"></i>
           </div>
+          </a>
         </div>
 
         <div class="d-flex flex-row justify-content-center my-5 ">
-          <a href={"/showresults/" + resumeId + "/" + templateId} >
+
+          <a  onClick={() => saveThePersonal(0)}>
             <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3">
               <span class="px-2">SAVE AND PREVIEW </span>
             </div>

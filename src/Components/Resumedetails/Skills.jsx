@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+
 
 import Navbar from '../Navbar/Navbar'
 import './Resumedetails.css'
@@ -8,8 +10,54 @@ import '../common.css'
 
 const Skills = () => {
   const { templateId, resumeId } = useParams()
-
   const navigate = useNavigate();
+  const [skill, setSkill] = useState("");
+  const [exskill, setExskill] = useState([])
+
+  useEffect(() => {
+    //window.location.reload()
+    setSkill("")
+    window.scrollTo(0, 0)
+    getAllskills()
+  }, [])
+
+  const getAllskills = () => {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/getresumedetails/' + resumeId)
+      .then((response) => {
+        console.log(response.data)
+        var skill_arr = response.data.skills.substr(0, response.data.skills.length - 1).split(",")
+        setExskill(skill_arr);
+
+
+      }, (error) => { })
+
+  }
+
+
+
+
+  const update = (event) => {
+    setSkill(event.target.value)
+  }
+
+  const addThisSkill = () => {
+    console.log(skill)
+
+    axios.get(process.env.REACT_APP_SERVER_URL + '/saveskill/' + resumeId, { params: { skill: skill } })
+      .then((response) => {
+        window.location.reload()
+      }, (error) => { })
+  }
+
+  const deleteSkill = (skill) => {
+    console.log(skill)
+
+    axios.get(process.env.REACT_APP_SERVER_URL + '/deleteskill/' + resumeId, { params: { skill: skill } })
+      .then((response) => {
+        window.location.reload()
+      }, (error) => { })
+  }
+
 
   const goPrevious = () => {
   }
@@ -32,16 +80,18 @@ const Skills = () => {
               <h2> EXISTING SKILLS </h2>
             </div>
 
-            <div class="heading mt-2 p-3">
-              <div class="d-flex flex-row justify-content-between">
-                <div class="" style={{ "width": "70%" }}>
-                  <div class="h4"> C++ </div>
-                </div>
-                <div class="text-danger p-small py-2 cursor_pointer">
-                  <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+            {exskill.map((d, index) => (
+              <div class="heading mt-2 p-3">
+                <div class="d-flex flex-row justify-content-between">
+                  <div class="" style={{ "width": "70%" }}>
+                    <div class="h4">{d}</div>
+                  </div>
+                  <div class="text-danger p-small py-2 cursor_pointer" onClick={() => deleteSkill(d)}>
+                    <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
 
 
 
@@ -59,7 +109,7 @@ const Skills = () => {
                 <div class="px-3 py-2">
 
                 </div>
-                <input class="w-100  p-large" type="text" placeholder="eg.. Software Engineering" />
+                <input class="w-100  p-large" type="text" onChange={update} placeholder="eg.. Software Engineering" />
               </div>
             </div>
 
@@ -68,7 +118,7 @@ const Skills = () => {
 
             <div class="mt-2">
 
-              <div class="top_header_button h5 p-3 w-100 cursor_pointer text-center">
+              <div class="top_header_button h5 p-3 w-100 cursor_pointer text-center" onClick={addThisSkill}>
                 Add This Skill
                 <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
               </div>
@@ -86,7 +136,7 @@ const Skills = () => {
               <span class="px-2">Go Previous </span></a>
           </div>
           <div class="p-large cursor_pointer text-white px-3" onClick={goNext}>
-            <a href={"/enterachivments/" + resumeId + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i></a>
+            {/*<a href={"/enterachivments/" + resumeId + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i></a>*/}
           </div>
         </div>
 

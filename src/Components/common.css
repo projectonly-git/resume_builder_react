@@ -125,7 +125,9 @@ select:focus{
 
 
 @media print {
-  body {margin:0;}
+  body {margin:0;
+    padding-left : 15px;
+  }
   .outerNavbar {
     display: none;
   }
