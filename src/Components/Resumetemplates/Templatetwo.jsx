@@ -84,8 +84,9 @@ const Templatetwo = (params) => {
         console.log(response.data)
         setPersonal(response.data)
         setExistingdetailsex(response.data.experiences)
-        var skill_arr = response.data.skills.substr(0, response.data.skills.length - 1).split(",")
-        setExskill(skill_arr);
+        var ns = response.data.skills.replace("null", "");
+        var skill_arr = ns.substr(0, ns.length - 1).split(",")
+        setExskill(skill_arr)
       }, (error) => { })
 
   }

@@ -165,7 +165,7 @@ const Register = () => {
                                     Forgot password<i class="fa-regular fa-circle-question px-2"></i>
 </div>*/}
 
-                <div class="h2 text-center mt-3 make_it_pointer login_button p-3" onClick={trytoregister}>
+                <div class="h2 text-center mt-3 make_it_pointer login_button p-3 cursor_pointer" onClick={trytoregister}>
                   REGISTER <i class="fa-solid fa-fingerprint"></i>
                 </div>
 

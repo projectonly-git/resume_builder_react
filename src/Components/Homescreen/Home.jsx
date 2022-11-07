@@ -1,30 +1,55 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
 
 import Navbar from '../Navbar/Navbar'
 import './Home.css';
 import '../common.css'
 
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Home = () => {
+  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    //window.location.reload()
- }, []);
+    //window.scrollTo(0, 0);
+    echomessage();
+  }, []);
+
+  const echomessage = () => {
+    try {
+      if (location.state.massage === "loggedin") {
+        toast.success("Login success", {
+          position: "top-right", autoClose: 2000,
+        })
+      }
+    }catch(e){}
+    
+  }
 
 
   const printDocument = () => {
     window.print();
-
   }
 
   const gotomedicalsoftware = () => {
-    navigate('/userchooseme');
+    
+    if(localStorage.getItem('emailid') === null){
+      toast.error("please login to continue", {
+        position: "top-right", autoClose: 2000,
+      })
+    }else{
+      navigate('/userchooseme');
+    }
   }
   return (
 
 
     <>
+      <ToastContainer />
 
       <Navbar />
 
@@ -147,7 +172,7 @@ const Home = () => {
                   </div>
                 </div>
 
-               
+
 
 
               </div>

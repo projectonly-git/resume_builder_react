@@ -144,12 +144,13 @@ const Education = () => {
         .then((response) => {
           console.log(response.data)
           getAlleducation()
+          toast.success("🚫 addedd this education", {
+            position: "top-right", autoClose: 1000,
+          })
           //setBlood(response.data)
         }, (error) => { })
-      toast.success("🚫 addedd this education", {
-        position: "top-right", autoClose: 1000,
-      })
-      window.location.reload()
+      
+      //window.location.reload()
 
     }
 

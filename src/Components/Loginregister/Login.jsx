@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import {Link, useNavigate} from 'react-router-dom';
+
+
 import '../common.css';
 import './login.css';
 
@@ -12,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = () => {
-
+  const navigate = useNavigate();
   const [formdata, setFormdata] = useState({ email: "", password: "" })
 
   const update = (event) => {
@@ -49,9 +52,7 @@ const Login = () => {
             position: "top-right", autoClose: 2000,
           })
         } else {
-          toast.success("Login Success return to home", {
-            position: "top-right", autoClose: 2000,
-          })
+          navigate('/',{state:{massage:"loggedin"}});
         }
       }, (error) => {
         toast.error("Email Not preasent! register", {
