@@ -1,35 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import Navbar from '../Navbar/Navbar'
 import './Resumedetails.css'
 import '../common.css'
 
 
-const Projects = () => {
 
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  const { templateId, resumeId } = useParams()
-  const navigate = useNavigate();
-
+const Returneditoradd = (props) => {
   const [posw, setPosw] = useState("")
   const [companyw, setCompanyw] = useState("")
   const [workdw, setWorkdw] = useState("")
 
 
-
-
-  // getting existing details for show in loop
-  const [existingdetails, setExistingdetails] = useState([])
   const [makeformdata, setMakeformdata] = useState({ position: "", company: "", starttime: "", endtime: "", workd: "" })
-
   const update = (event) => {
     let val = event.target.value
     let name = event.target.name
@@ -47,29 +33,6 @@ const Projects = () => {
       }
     })
     //console.log(makeformdata)
-  }
-
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    getAllexp()
-  }, [])
-
-  const deleteExperience = (xpid) => {
-    axios.get(process.env.REACT_APP_SERVER_URL + '/deleteexperiencedetails/' + xpid)
-      .then((response) => {
-        console.log(response.data)
-        window.location.reload()
-      }, (error) => { })
-  }
-
-  const getAllexp = () => {
-    axios.get(process.env.REACT_APP_SERVER_URL + '/getallexp/' + resumeId)
-      .then((response) => {
-        console.log(response.data)
-        setExistingdetails(response.data)
-        //setBlood(response.data)
-      }, (error) => { })
   }
 
 
@@ -105,10 +68,10 @@ const Projects = () => {
       exp.endtime = makeformdata.endtime
       exp.workd = makeformdata.workd
 
-      axios.post(process.env.REACT_APP_SERVER_URL + '/saveexperiencedetails/' + resumeId, exp)
+      axios.post(process.env.REACT_APP_SERVER_URL + '/saveexperiencedetails/' + props.resumeId, exp)
         .then((response) => {
           console.log(response.data)
-          getAllexp()
+          props.getAllexp()
           toast.success(" addedd this work experience", {
             position: "top-center", autoClose: 1000,
           })
@@ -123,6 +86,190 @@ const Projects = () => {
 
     //console.log(makeformdata)
   }
+
+  if (props.editingornew === 0) {
+    return (
+      <>
+        <div class="mt-3">
+          <div class=" ">
+            <div class="h4"> Enter The Position </div>
+          </div>
+          <div class="input_box_text px-3 d-flex flex-row">
+            <div class="px-3 py-2">
+              <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
+            </div>
+            <input onChange={update} name="position" class="w-100  p-large" type="text" placeholder="eg.. SDE - III" />
+          </div>
+          <div class="p-small text-danger py-2"> {posw} </div>
+        </div>
+
+        <div class="mt-3">
+          <div class=" ">
+            <div class="h4"> Enter Company name </div>
+          </div>
+          <div class="input_box_text px-3 d-flex flex-row">
+            <div class="px-3 py-2">
+              <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
+            </div>
+            <input name="company" onChange={update} class="w-100  p-large" type="text" placeholder="eg.. Alphabet" />
+          </div>
+          <div class="p-small text-danger py-2"> {companyw} </div>
+        </div>
+
+
+        <div class="mt-3 ">
+          <div class="">
+            <div class="h4"> Enter Duration</div>
+          </div>
+          <div class="d-flex flex-row">
+            <div class="">
+              <input name="starttime" onChange={update} class=" input_box_text px-3 p-large" type="date" placeholder="start eg.. MM/YYYY" />
+            </div>
+            <div class="px-3 ">
+              <input name="endtime" onChange={update} class=" input_box_text px-3 p-large" type="date" placeholder="end eg.. MM/YYYY" />
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <div class="">
+            <div class="h4"> Enter Work Description </div>
+          </div>
+          <div class="input_box_text_area_project px-3 d-flex flex-row">
+            {/*<textbox class="w-100  p-large" type="text" placeholder="eg.. 90" />*/}
+            <textarea name="workd" onChange={update} class="p-small" placeholder="enter work description"></textarea>
+          </div>
+          <div class="p-small text-danger py-2"> {workdw} </div>
+        </div>
+
+
+        <div class="mt-2">
+
+          <div class="top_header_button h5 p-3 w-100 cursor_pointer text-center" onClick={saveThisExperience}>
+            Add This Experince
+            <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
+          </div>
+        </div>
+
+      </>
+    )
+  }else{
+    return (
+      <>
+        <div class="mt-3">
+          <div class=" ">
+            <div class="h4"> Enter The Position </div>
+          </div>
+          <div class="input_box_text px-3 d-flex flex-row">
+            <div class="px-3 py-2">
+              <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
+            </div>
+            <input onChange={update} name="position" class="w-100  p-large" type="text" value={props.whatsedditing.position} />
+          </div>
+          <div class="p-small text-danger py-2"> {posw} </div>
+        </div>
+
+        <div class="mt-3">
+          <div class=" ">
+            <div class="h4"> Enter Company name </div>
+          </div>
+          <div class="input_box_text px-3 d-flex flex-row">
+            <div class="px-3 py-2">
+              <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
+            </div>
+            <input name="company" onChange={update} class="w-100  p-large" type="text" value={props.whatsedditing.company} />
+          </div>
+          <div class="p-small text-danger py-2"> {companyw} </div>
+        </div>
+
+
+        <div class="mt-3 ">
+          <div class="">
+            <div class="h4"> Enter Duration</div>
+          </div>
+          <div class="d-flex flex-row">
+            <div class="">
+              <input name="starttime" onChange={update} class=" input_box_text px-3 p-large" type="date" value={props.whatsedditing.starttime} />
+            </div>
+            <div class="px-3 ">
+              <input name="endtime" onChange={update} class=" input_box_text px-3 p-large" type="date" value={props.whatsedditing.endtime} />
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <div class="">
+            <div class="h4"> Enter Work Description </div>
+          </div>
+          <div class="input_box_text_area_project px-3 d-flex flex-row">
+            {/*<textbox class="w-100  p-large" type="text" placeholder="eg.. 90" />*/}
+            <textarea name="workd" onChange={update} class="p-small" value={props.whatsedditing.workd} ></textarea>
+          </div>
+          <div class="p-small text-danger py-2"> {workdw} </div>
+        </div>
+
+
+        <div class="mt-2">
+
+          <div class="top_header_button h5 p-3 w-100 cursor_pointer text-center" onClick={saveThisExperience}>
+            Update This Experince
+            <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
+          </div>
+        </div>
+
+      </>
+    )
+  }
+
+
+}
+const Projects = () => {
+
+  const [editingornew, setEditingornew] = useState(0);
+  const [whatsedditing, setWhatsedditing] = useState({});
+
+  const [editingoedu, setEditingoedu] = useState({});
+  const { templateId, resumeId } = useParams()
+  //const navigate = useNavigate();
+
+  // getting existing details for show in loop
+  const [existingdetails, setExistingdetails] = useState([])
+
+
+
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    getAllexp()
+  }, [])
+
+  const updateEditingornewtoedit = (d) =>{
+    setWhatsedditing(d)
+    setEditingornew(1)
+  }
+
+  const getAllexp = () => {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/getallexp/' + resumeId)
+      .then((response) => {
+        console.log(response.data)
+        setExistingdetails(response.data)
+        //setBlood(response.data)
+      }, (error) => { })
+  }
+
+  const deleteExperience = (xpid) => {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/deleteexperiencedetails/' + xpid)
+      .then((response) => {
+        console.log(response.data)
+        window.location.reload()
+      }, (error) => { })
+  }
+
+
+
+
+
 
 
 
@@ -189,6 +336,15 @@ const Projects = () => {
                       <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
                     </div>
                   </div>
+
+                  <div class="px-3 mt-2 each_box">
+                    <div class="top_header_button p-large p-3 w-100 cursor_pointer" onClick={() => updateEditingornewtoedit(d)} >
+                      Edit
+                      <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
+                    </div>
+                  </div>
+
+
                 </div>
               </div>
             ))}
@@ -203,69 +359,12 @@ const Projects = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 w-100">
-              <h2> ENTER WORK DETAILS </h2>
+              <h2> ENTER NEW WORK DETAILS </h2>
             </div>
 
-            <div class="mt-3">
-              <div class=" ">
-                <div class="h4"> Enter The Position </div>
-              </div>
-              <div class="input_box_text px-3 d-flex flex-row">
-                <div class="px-3 py-2">
-                  <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
-                </div>
-                <input onChange={update} name="position" class="w-100  p-large" type="text" placeholder="eg.. SDE - III" />
-              </div>
-              <div class="p-small text-danger py-2"> {posw} </div>
-            </div>
-
-            <div class="mt-3">
-              <div class=" ">
-                <div class="h4"> Enter Company name </div>
-              </div>
-              <div class="input_box_text px-3 d-flex flex-row">
-                <div class="px-3 py-2">
-                  <i class="fa fa-building-o fa-2x" aria-hidden="true"></i>
-                </div>
-                <input name="company" onChange={update} class="w-100  p-large" type="text" placeholder="eg.. Alphabet" />
-              </div>
-              <div class="p-small text-danger py-2"> {companyw} </div>
-            </div>
+            < Returneditoradd editingornew={editingornew} resumeId={resumeId} getAllexp={getAllexp} whatsedditing={whatsedditing}/>
 
 
-            <div class="mt-3 ">
-              <div class="">
-                <div class="h4"> Enter Duration</div>
-              </div>
-              <div class="d-flex flex-row">
-                <div class="">
-                  <input name="starttime" onChange={update} class=" input_box_text px-3 p-large" type="date" placeholder="start eg.. MM/YYYY" />
-                </div>
-                <div class="px-3 ">
-                  <input name="endtime" onChange={update} class=" input_box_text px-3 p-large" type="date" placeholder="end eg.. MM/YYYY" />
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-3">
-              <div class="">
-                <div class="h4"> Enter Work Description </div>
-              </div>
-              <div class="input_box_text_area_project px-3 d-flex flex-row">
-                {/*<textbox class="w-100  p-large" type="text" placeholder="eg.. 90" />*/}
-                <textarea name="workd" onChange={update} class="p-small" placeholder="enter work description"></textarea>
-              </div>
-              <div class="p-small text-danger py-2"> {workdw} </div>
-            </div>
-
-
-            <div class="mt-2">
-
-              <div class="top_header_button h5 p-3 w-100 cursor_pointer text-center" onClick={saveThisExperience}>
-                Add This Experince
-                <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
-              </div>
-            </div>
 
 
           </div>

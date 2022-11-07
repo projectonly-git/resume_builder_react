@@ -13,13 +13,13 @@ const Personal = () => {
   const navigate = useNavigate();
   const { templateId, resumeId } = useParams()
 
-  const [namew, setNamew] = useState(""); const [cityw, setcityw] = useState(""); const [statew, setStatew] = useState("");
+  const [namew1, setNamew1] = useState(""); const [namew2, setNamew2] = useState(""); const [cityw, setcityw] = useState(""); const [statew, setStatew] = useState("");
   const [pincodew, setPincodew] = useState(""); const [emailw, setEmailw] = useState(""); const [jobtitlew, setJobtitlew] = useState("");
   const [phonew, setPhonew] = useState("");
 
   // handle form input and making formdata for saving in database...
   const [makeformdata, setMakeformdata] = useState({
-    fullname: "",
+    fullname1: "",fullname2: "",
     jobtitle: "", city: "", state: "AK - Alaska", pincode: "", email: "",
     phone: "", linkedin: "", github: ""
   })
@@ -27,24 +27,30 @@ const Personal = () => {
     let val = event.target.value
     let name = event.target.name
     setMakeformdata((prev) => {
-      if (name === "fullname") {
-        return { fullname: val, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+      if (name === "fullname1") {
+        return { fullname1: val, fullname2:prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+      } else if (name === "fullname2") {
+        return { fullname1: prev.fullname1, fullname2:val, jobtitle: val, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "jobtitle") {
-        return { fullname: prev.fullname, jobtitle: val, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2:prev.fullname2, jobtitle: val, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "city") {
-        return { fullname: prev.fullname, jobtitle: prev.jobtitle, city: val, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2:prev.fullname2, jobtitle: prev.jobtitle, city: val, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "state") {
-        return { fullname: prev.fullname, jobtitle: prev.jobtitle, city: prev.city, state: val, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2:prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: val, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "pincode") {
-        return { fullname: prev.fullname, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: val, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2:prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: val, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "email") {
-        return { fullname: prev.fullname, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: val, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2:prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: val, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "phone") {
-        return { fullname: prev.fullname, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: val, linkedin: prev.linkedin, github: prev.github }
+        var prevPhone = val;
+        if(prevPhone.length === 3 || prevPhone.length === 7){
+          val += "-"
+        }
+        return { fullname1: prev.fullname1, fullname2:prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: val, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "linkedin") {
-        return { fullname: prev.fullname, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: val, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2:prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: val, github: prev.github }
       } else {
-        return { fullname: prev.fullname, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: val }
+        return { fullname1: prev.fullname1, fullname2:prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: val }
       }
 
     })
@@ -56,16 +62,29 @@ const Personal = () => {
     var flag = true
 
     // name case
-    if (makeformdata.fullname === "") {
-      setNamew("please enter your name")
+    if (makeformdata.fullname1 === "") {
+      setNamew1("First name can not be empty ! ")
       flag = false
     } else {
-      var ifOnlyAlphabet = /^[a-zA-Z\s.,]+$/.test(makeformdata.fullname);
+      var ifOnlyAlphabet = /^[a-zA-Z\s.,]+$/.test(makeformdata.fullname1);
       if (!ifOnlyAlphabet) {
-        setNamew("name can have only alphabet")
+        setNamew1("name can have only alphabet")
         flag = false;
       } else {
-        setNamew("")
+        setNamew1("")
+      }
+    }
+
+    if (makeformdata.fullname2 === "") {
+      setNamew2("Second  name can not be empty ! ")
+      flag = false
+    } else {
+      var ifOnlyAlphabet = /^[a-zA-Z\s.,]+$/.test(makeformdata.fullname2);
+      if (!ifOnlyAlphabet) {
+        setNamew2("name can have only alphabet")
+        flag = false;
+      } else {
+        setNamew2("")
       }
     }
 
@@ -103,8 +122,11 @@ const Personal = () => {
       }
     }
 
-    if (makeformdata.phone.length != 10) {
-      setPhonew("enter a correct phone-no (111-222-3333) ")
+    var phone = makeformdata.phone;
+    var newPhone = phone.replaceAll("-","");
+    console.log(newPhone)
+    if (newPhone.length != 10) {
+      setPhonew("enter a correct phone-no of 10 digit (111-222-3333) ")
       flag = false
     } else {
       setPhonew("")
@@ -128,7 +150,7 @@ const Personal = () => {
     resume.resumeid = resumeId
     resume.date = new Date();
     resume.templateid = templateId
-    resume.username = makeformdata.fullname
+    resume.username = makeformdata.fullname1 + " " + makeformdata.fullname2
     resume.designation = makeformdata.jobtitle
     resume.state = makeformdata.state
     resume.city = makeformdata.city
@@ -138,7 +160,7 @@ const Personal = () => {
     resume.linkedin = makeformdata.linkedin
     resume.github = makeformdata.github
 
-    console.log(resume)
+    //console.log(resume)
 
     axios.post(process.env.REACT_APP_SERVER_URL + '/savepersonaldetails/' + localStorage.getItem('emailid'), resume)
       .then((response) => {
@@ -169,17 +191,27 @@ return (
       </div>
 
       <div class="d-flex flex-row mt-2 justify-content-between">
-        <div class="mt-2 each_box">
+        <div class="mt-2 each_box1_personal">
           <div class=" ">
-            <div class="h4"> Enter Full Name</div>
+            <div class="h4"> Enter First Name</div>
           </div>
           <div class="input_box_text w-100">
-            <input name="fullname" onChange={update} class="w-100  px-3 p-large" type="text" placeholder="eg. John Doe" />
+            <input name="fullname1" onChange={update} class="w-100  px-3 p-large" type="text" placeholder="eg. John Doe" />
           </div>
-          <div class="p-small text-danger"> {namew} </div>
+          <div class="p-small text-danger"> {namew1} </div>
         </div>
 
-        <div class="mt-2 each_box">
+        <div class="mt-2 each_box1_personal">
+          <div class=" ">
+            <div class="h4"> Enter Last Name</div>
+          </div>
+          <div class="input_box_text w-100">
+            <input name="fullname2" onChange={update} class="w-100  px-3 p-large" type="text" placeholder="eg. John Doe" />
+          </div>
+          <div class="p-small text-danger"> {namew2} </div>
+        </div>
+
+        <div class="mt-2 each_box1_personal">
           <div class=" ">
             <div class="h4"> Enter Job Title</div>
           </div>
@@ -268,7 +300,7 @@ return (
             <div class="p-small text-danger"> {statew} </div>
           </div>
           <div class="each_box1_personal">
-            <div class="h4"> Enter pincode</div>
+            <div class="h4"> Enter your Zipcode</div>
             <input onChange={update} name="pincode" class="w-100 input_box_text px-3 p-large" type="text" placeholder="eg. 22030" />
             <div class="p-small text-danger"> {pincodew} </div>
           </div>
@@ -289,10 +321,10 @@ return (
         <div class="mt-2 each_box">
           <div class=" ">
             <div class="h4"> Enter Your Phone Number</div>
-            <div class="p-small text-info font-weight-bold"> For international number add country code ( eg +49)</div>
+            <div class="p-small text-info font-weight-bold"> For international number add country code ( eg +1)</div>
           </div>
           <div class="input_box_out w-100">
-            <input onChange={update} name="phone" class="w-100 input_box_text px-3 p-large" type="text" placeholder="eg. 111223333" />
+            <input onChange={update} name="phone" class="w-100 input_box_text px-3 p-large" type="text" value={makeformdata.phone} />
             <div class="p-small text-danger"> {phonew} </div>
           </div>
         </div>

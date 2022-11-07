@@ -19,7 +19,10 @@ const Loginprofile = () => {
     return (
       <>
         <div class=" py-1 px-3 p-small login_border cursor_pointer ">
-          <a href="/login" style={{ "color": "black" }}>Login / Signup</a>
+          <a href="/login" style={{ "color": "black" }}>Login</a>
+        </div>
+        <div class=" py-1 px-3 p-small login_border cursor_pointer mx-2">
+          <a href="/register" style={{ "color": "black" }}>Signup</a>
         </div>
       </>
     )
@@ -27,10 +30,10 @@ const Loginprofile = () => {
     return (
       <>
         <div class=" py-1 px-3 p-small login_border cursor_pointer ">
-          <a href="/profile" style={{ "color": "black" }}>{localStorage.getItem("username")}</a>
+          <a href="/profile" style={{ "color": "black" }}>My Resume</a>
         </div>
-        <div class=" py-1 px-3 p-small  cursor_pointer " onClick={signout}>
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <div class=" py-1 px-3 p-small  cursor_pointer text-danger" onClick={signout}>
+          logout  <i class="fa fa-sign-out px-2" aria-hidden="true"></i>
         </div>
       </>
     )
