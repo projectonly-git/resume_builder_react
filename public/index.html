@@ -39,10 +39,6 @@
 
 <script>
  $ (document).ready(function () {
-
-
-
-   
     $(window).scroll(function () {
       var scroll = $(window).scrollTop();
       if (scroll >= 5) {
@@ -53,8 +49,10 @@
         $('.outerNavbar').removeClass("fixed-top");
         //$('.navbar1').removeClass("fixed-top");
       }
+    });
 
-      
+    $(".tt").each(function (index, element) {
+        new bootstrap.Tooltip(element);
     });
 
 

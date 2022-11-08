@@ -29,6 +29,15 @@ const Profile = () => {
       })
   }
 
+  const delteResune = (rid) => {
+    axios.get(process.env.REACT_APP_SERVER_URL + '/deleteresume/' + rid,)
+      .then((response) => {
+        console.log(response.data)
+        getAllresume()
+      }, (error) => {
+      })
+  }
+
 
   return (
     <div class="profile">
@@ -45,20 +54,20 @@ const Profile = () => {
 
           {resume.map((d, index) => (
             <div class="p-3">
-              <div class="make_bg_grey h3 p-3">
-                resumeId : {d.resumeid}
-                <div class="d-flex flex-row justify-content-between">
-                  <a href={"/enterpersonaldetails/" + d.resumeid + "/" + d.templateid} >
+              <div class="make_bg_grey p-large p-3">
+                {d.resumeid}___{d.date}
+                <div class="d-flex flex-row h3 py-3 justify-content-center">
+                  <a href={"/enterpersonaldetails/" + d.resumeid + "/" + d.templateid}  class="px-2">
                     <div>
                       <i class="fa fa-pencil-square" aria-hidden="true"></i>
                     </div>
                   </a>
-                  <a href={"/showresults/" +d.resumeid + "/" + d.templateid} >
-                    <div>
-                      <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    </div>
-                  </a>
-                  <a href={"/showresults/" +d.resumeid + "/" + d.templateid} >
+
+                  <div className="cursor_pointer" onClick={() => delteResune(d.resumeid)} class="px-2">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  </div>
+
+                  <a href={"/showresults/" + d.resumeid + "/" + d.templateid} class="px-2" >
                     <div>
                       <i class="fa fa-download" aria-hidden="true"></i>
                     </div>

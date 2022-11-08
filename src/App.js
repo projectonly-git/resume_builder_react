@@ -70,9 +70,9 @@ function App() {
         <Route path="/enterskills/:resumeId/:templateId" element={<Skills />} />
       </Routes>
 
-      {/*<Routes>
+      <Routes>
         <Route path="/enterachivments/:resumeId/:templateId" element={<Achivments />} />
-      </Routes>*/}
+      </Routes>
 
 
 

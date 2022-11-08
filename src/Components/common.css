@@ -116,6 +116,25 @@ select:focus{
   outline : none ;
 }
 
+.add_border_on_heading{
+  border : 3px solid #3c4852;
+}
+.top_header_button_1{
+  border : 3px solid #3c4852;
+  border-radius :20px 10px 20px 10px;
+  background-color : #3c4852;
+  filter: brightness(85%);
+  color:white;
+}
+.underline_it{
+  border-bottom: 1px solid;
+}
+.marks_border_bg{
+  background-color : #3c4852;
+  color:white;
+  border-radius: 5px;
+}
+
 
 
 

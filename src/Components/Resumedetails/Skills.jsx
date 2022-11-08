@@ -25,10 +25,13 @@ const Skills = () => {
     axios.get(process.env.REACT_APP_SERVER_URL + '/getresumedetails/' + resumeId)
       .then((response) => {
         console.log(response.data)
-        var skill_arr = response.data.skills.substr(0, response.data.skills.length - 1).split(",")
-        setExskill(skill_arr);
-
-
+        var skill_str = response.data.skills ;
+        skill_str = skill_str.replace("null", "")
+        if(skill_str.length === 0) setExskill([])
+        else{
+           var skill_arr = skill_str.substr(0, skill_str.length - 1).split(",")
+           setExskill(skill_arr);
+        }
       }, (error) => { })
 
   }
@@ -136,14 +139,14 @@ const Skills = () => {
               <span class="px-2">Go Previous </span></a>
           </div>
           <div class="p-large cursor_pointer text-white px-3" onClick={goNext}>
-            {/*<a href={"/enterachivments/" + resumeId + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i></a>*/}
+            <a href={"/enterachivments/" + resumeId + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i></a>
           </div>
         </div>
 
         <div class="d-flex flex-row justify-content-center my-5 ">
           <a href={"/showresults/" + resumeId + "/" + templateId} >
             <div class=" h3 cursor_pointer text-white px-3 save_and_preview py-3">
-              <span class="px-2">SAVE AND PREVIEW </span>
+              <span class="px-2"> PREVIEW and DOWNLOAD </span>
             </div>
           </a>
         </div>
