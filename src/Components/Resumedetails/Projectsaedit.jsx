@@ -160,12 +160,12 @@ const Projectsadd = (props) => {
         <div class="d-flex flex-row">
 
           <div class="">
-            <div class="h4"> start time</div>
+            <div class="h4"> Start time</div>
             <input name="starttime" onChange={update} class=" input_box_text px-3 p-large" type="month" value={makeformdata.starttime} />
           </div>
 
           <div class="px-3">
-            <div class="h4"> end time</div>
+            <div class="h4"> End time</div>
             <div class={showorhide}>
               <input name="endtime" onChange={update} class={" input_box_text px-3 p-large"} type="month" value={makeformdata.endtime} />
             </div>

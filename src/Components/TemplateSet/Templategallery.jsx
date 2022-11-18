@@ -41,7 +41,7 @@ const Templategallery = () => {
 
         <div>
           <div class=" make_bg_grey mt-5 p-2 text-center h1">
-            choose a template
+            Choose a template
           </div>
           <div class="bg-warning text-white">
             <div class="d-flex align-items-center h4 cursor_pointer" onClick={gotomedoreng} >

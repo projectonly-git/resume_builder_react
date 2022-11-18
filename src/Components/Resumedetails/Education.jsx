@@ -84,7 +84,7 @@ const Education = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 ">
-              <h2> EXISTING DETAILS </h2>
+              <h2> Education details </h2>
             </div>
 
 
@@ -137,7 +137,7 @@ const Education = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 w-100">
-              <h2> EDUCATION </h2>
+              <h2> Add education </h2>
             </div>
 
             <Showeducation editingornew={editingornew} updateEditingornewtoadd={updateEditingornewtoadd} getAlleducation={getAlleducation} resumeId={resumeId} editingoedu={editingoedu} />

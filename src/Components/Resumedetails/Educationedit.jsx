@@ -251,7 +251,7 @@ const Educationedit = (props) => {
 
             <div class="mt-3">
                 <div class=" ">
-                    <div class="h4"> Gpa
+                    <div class="h4"> GPA
                         <span class="p-small cursor_pointer text-danger tt" data-bs-toggle="tooltip" data-bs-placement="left" title="Enter your gpa (0-4)">(<i class="fa fa-info" aria-hidden="true"></i>)</span>
                     </div>
                 </div>

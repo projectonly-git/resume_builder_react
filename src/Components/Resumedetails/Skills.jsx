@@ -84,7 +84,7 @@ const Skills = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 ">
-              <h2> EXISTING SKILLS </h2>
+              <h2> Saved skill </h2>
             </div>
 
             {exskill.map((d, index) => (
@@ -107,7 +107,7 @@ const Skills = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 w-100">
-              <h2> ENTER NEW SKILLS </h2>
+              <h2> New skill </h2>
             </div>
 
             <div class="mt-3">

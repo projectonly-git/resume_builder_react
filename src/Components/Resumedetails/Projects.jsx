@@ -94,7 +94,7 @@ const Projects = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 ">
-              <h2> EXISTING PROFESSIONAL EXPERIENCE </h2>
+              <h2> Existing professional experience </h2>
             </div>
 
             {existingdetails.map((d, index) => (
@@ -160,7 +160,7 @@ const Projects = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 w-100">
-              <h2> PROFESSIONAL EXPERIENCE </h2>
+              <h2> Professional experience </h2>
             </div>
             < Returneditoradd editingornew={editingornew} resumeId={resumeId} getAllexp={getAllexp} whatsedditing={whatsedditing} updateEditingornewtoadd={updateEditingornewtoadd}/>
           </div>

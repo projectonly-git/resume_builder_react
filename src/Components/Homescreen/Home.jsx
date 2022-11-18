@@ -79,7 +79,7 @@ const Home = () => {
                 Build your dream resume <br /> with <span class="gradiend_text">Resume Maker</span>
               </div>
               <div class=" p-small py-3 d-flex justify-content-center">
-                build the resume now that  will get you in your dream company
+                Build the resume now that  will get you in your dream company
               </div>
               <div class=" d-flex justify-content-center py-4 " onClick={gotomedicalsoftware}>
                 <div class=" top_header_button h4 p-3 cursor_pointer">
@@ -119,7 +119,7 @@ const Home = () => {
                       <div>
                         <div class=" h1 numbering p-2 text-center ">01</div>
                         <h1>Choose your profession</h1>
-                        <h5>we cover both mediacal and engineering</h5>
+                        <h5>We cover both mediacal and engineering</h5>
                       </div>
                     </div>
 
@@ -134,7 +134,7 @@ const Home = () => {
                         <div>
                           <div class=" h1 numbering p-2 text-center ">02</div>
                           <h1> Choose a template</h1>
-                          <h5> choose from templates that suits you the best </h5>
+                          <h5> Choose from templates that suits you the best </h5>
                         </div>
                       </div>
                     </div>
@@ -175,7 +175,7 @@ const Home = () => {
                         <div>
                           <div class=" h1 numbering p-2 text-center ">04</div>
                           <h1>Download your resume</h1>
-                          <h5>now you are ready for a dream job</h5>
+                          <h5>Now you are ready for a dream job</h5>
                         </div>
                       </div>
                     </div>
