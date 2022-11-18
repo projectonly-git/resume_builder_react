@@ -23,8 +23,7 @@ const Returneditoradd = (props) => {
   } else {
     return (
       <>
-        <Projectsedit whatsedditing={props.whatsedditing} resumeId={props.resumeId} getAllexp={props.getAllexp} />
-
+        <Projectsedit whatsedditing={props.whatsedditing} resumeId={props.resumeId} getAllexp={props.getAllexp} updateEditingornewtoadd={props.updateEditingornewtoadd} />
       </>
     )
   }
@@ -33,13 +32,14 @@ const Returneditoradd = (props) => {
 
 }
 const Projects = () => {
+  const { templateId, field, resumeId } = useParams()
+  const navigate = useNavigate();
+
+
 
   const [editingornew, setEditingornew] = useState(0);
   const [whatsedditing, setWhatsedditing] = useState({});
-
   const [editingoedu, setEditingoedu] = useState({});
-  const { templateId, resumeId } = useParams()
-  //const navigate = useNavigate();
 
   // getting existing details for show in loop
   const [existingdetails, setExistingdetails] = useState([])
@@ -78,6 +78,10 @@ const Projects = () => {
         window.location.reload()
       }, (error) => { })
   }
+  const previewanddownload = () => {
+    const link = "/showresults/" + resumeId + "/" + templateId + "/" + field
+    navigate(link, { state: { message: "saved_resume" } })
+  }
 
   return (
 
@@ -90,7 +94,7 @@ const Projects = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 ">
-              <h2> EXISTING WORK EXPERIENCES </h2>
+              <h2> EXISTING PROFESSIONAL EXPERIENCE </h2>
             </div>
 
             {existingdetails.map((d, index) => (
@@ -151,50 +155,35 @@ const Projects = () => {
               </div>
             ))}
 
-
-
-
-
-
           </div>
 
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 w-100">
-              <h2> ENTER NEW WORK DETAILS </h2>
+              <h2> PROFESSIONAL EXPERIENCE </h2>
             </div>
-
-            < Returneditoradd editingornew={editingornew} resumeId={resumeId} getAllexp={getAllexp} whatsedditing={whatsedditing} />
-
-
-
-
+            < Returneditoradd editingornew={editingornew} resumeId={resumeId} getAllexp={getAllexp} whatsedditing={whatsedditing} updateEditingornewtoadd={updateEditingornewtoadd}/>
           </div>
-
-
         </div>
 
         <div class="d-flex flex-row justify-content-between my-5 border-bottom-link">
           <div class="p-large cursor_pointer text-white px-3" >
-            <a href={"/entereducationaldetails/" + resumeId + "/" + templateId} class="text-white"><i class="fa fa-backward" aria-hidden="true"></i>
+            <a href={"/entereducationaldetails/" + resumeId + "/" + field + "/" + templateId} class="text-white"><i class="fa fa-backward" aria-hidden="true"></i>
               <span class="px-2">Go Previous </span></a>
           </div>
           <div class="p-large cursor_pointer text-white px-3" >
-            <a href={"/enterskills/" + resumeId + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i></a>
+            <a href={"/enterskills/" + resumeId + "/" + field + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i></a>
           </div>
         </div>
 
-        <div class="d-flex flex-row justify-content-center my-5 ">
-          <a href={"/showresults/" + resumeId + "/" + templateId} >
-            <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3">
-              <span class="px-2"> PREVIEW and DOWNLOAD </span>
-            </div>
-          </a>
+        <div class="d-flex flex-row justify-content-center my-5 " onClick={previewanddownload}>
+          <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3" >
+            <span class="px-2"> preview and download </span>
+          </div>
         </div>
 
 
       </div>
-
     </div>
   )
 }

@@ -32,8 +32,12 @@ const Profile = () => {
   const delteResune = (rid) => {
     axios.get(process.env.REACT_APP_SERVER_URL + '/deleteresume/' + rid,)
       .then((response) => {
-        console.log(response.data)
+        //console.log(response.data)
         getAllresume()
+
+        toast.success("resume is deleted", {
+          position: "top-center", autoCloseautoClose: 100,
+        })
       }, (error) => {
       })
   }
@@ -41,6 +45,7 @@ const Profile = () => {
 
   return (
     <div class="profile">
+      <ToastContainer />
       <Navbar />
 
       <div class="container mt-5">
@@ -54,22 +59,24 @@ const Profile = () => {
 
           {resume.map((d, index) => (
             <div class="p-3">
-              <div class="make_bg_grey p-large p-3">
+              <div class="make_bg_grey h5 p-3">
                 {d.resumeid}___{d.date}
                 <div class="d-flex flex-row h3 py-3 justify-content-center">
-                  <a href={"/enterpersonaldetails/" + d.resumeid + "/" + d.templateid}  class="px-2">
-                    <div>
-                      <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                  <a className="cursor_pointer" href={"/enterpersonaldetails/" + d.resumeid + "/" + d.medoreng + "/" + d.templateid} class="px-2">
+                    <div class="h6 button bg-success text-white">
+                      edit
                     </div>
                   </a>
 
-                  <div className="cursor_pointer" onClick={() => delteResune(d.resumeid)} class="px-2">
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  <div class="cursor_pointer px-2" onClick={() => delteResune(d.resumeid)} >
+                    <div class="h6 button bg-info text-white">
+                      delete
+                    </div>
                   </div>
 
-                  <a href={"/showresults/" + d.resumeid + "/" + d.templateid} class="px-2" >
-                    <div>
-                      <i class="fa fa-download" aria-hidden="true"></i>
+                  <a className="cursor_pointer" href={"/showresults/" + d.resumeid + "/" + d.templateid + "/" + d.medoreng} class="px-2" >
+                    <div class="h6 button bg-warning text-white">
+                      download
                     </div>
                   </a>
 

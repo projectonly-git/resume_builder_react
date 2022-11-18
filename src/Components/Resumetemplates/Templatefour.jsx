@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from '../Navbar/Navbar'
 import axios from "axios";
+import {useParams, useNavigate} from 'react-router-dom'
 
 
 
@@ -63,7 +64,9 @@ const Linkedingithub = (props) => {
 }
 
 const Templatefour = (params) => {
+  const {resumeId, templateId, field} = useParams()
 
+  const navigate = useNavigate();
   const [personal, setPersonal] = useState({})
   const [existingdetailsed, setExistingdetailsed] = useState([])
   const [existingdetailsex, setExistingdetailsex] = useState([])
@@ -79,6 +82,11 @@ const Templatefour = (params) => {
     getAllskills()
   }, []);
 
+  const reedit = () => {
+    const link = "/enterpersonaldetails/" + resumeId +"/" + field +"/" + templateId
+    navigate(link)
+
+  }
   const getAllskills = () => {
     axios.get(process.env.REACT_APP_SERVER_URL + '/getresumedetails/' + params.resumeId)
       .then((response) => {
@@ -177,7 +185,7 @@ const Templatefour = (params) => {
               </div>*/}
 
 
-              <div class="px-3 h3 my-0 make_it_blue_font underline1 w-100"> EXPERIENCES  </div><br />
+              <div class="px-3 h3 my-0 make_it_blue_font underline1 w-100"> PROFESSIONAL EXPERIENCES  </div><br />
 
               {existingdetailsex.map((d, index) => (
                 <div class=" make_bg_grey my-1">
@@ -201,7 +209,7 @@ const Templatefour = (params) => {
               </div>
 
 
-              <div class="px-3 h3 my-0 make_it_blue_font underline1 w-100"> ACHIVMENTS AND CERTIFICATION   </div><br />
+              <div class="px-3 h3 my-0 make_it_blue_font underline1 w-100"> ACHIVEMENT AND CERTIFICATION   </div><br />
 
               {achivment.map((d, index) => (
                 <>
@@ -223,10 +231,13 @@ const Templatefour = (params) => {
       </div>
 
 
-      <div class="w-50 container print_button cursor_pointer" onClick={printDocument}>
-        <div class="d-flex flex-row justify-content-center my-5 border-bottom-link">
-          <div class="py-4 p-large  text-white px-3" >
-            <span class="px-2">Download</span>
+      <div class="w-50 container print_button cursor_pointer" >
+        <div class="h6 d-flex flex-row justify-content-center my-5 border-bottom-link">
+          <div class="py-4 text-white px-3 bg-success" onClick={printDocument}>
+            <span class="px-2">download</span>
+          </div>
+          <div class="py-4  text-white px-3 bg-warning" onClick={reedit}>
+            <span class="px-2">continue to edit</span>
           </div>
         </div>
       </div>

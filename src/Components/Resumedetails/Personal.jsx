@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
 
@@ -7,28 +7,47 @@ import Navbar from '../Navbar/Navbar'
 import './Resumedetails.css'
 import '../common.css'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Personal = () => {
+
+const Personal = (props) => {
 
   const navigate = useNavigate();
-  const { templateId, resumeId } = useParams()
+  const location = useLocation();
+  const [id, setId] = useState(1);
+
+
+
+  const { resumeId, field, templateId } = useParams()
 
   const [skills, setSkills] = useState("");
-
   const [namew1, setNamew1] = useState(""); const [namew2, setNamew2] = useState(""); const [cityw, setcityw] = useState(""); const [statew, setStatew] = useState("");
-  const [pincodew, setPincodew] = useState(""); const [emailw, setEmailw] = useState(""); const [jobtitlew, setJobtitlew] = useState("");
+  const [addressw, setAddressw] = useState(""); const [pincodew, setPincodew] = useState(""); const [emailw, setEmailw] = useState(""); const [jobtitlew, setJobtitlew] = useState("");
   const [phonew, setPhonew] = useState("");
 
   // handle form input and making formdata for saving in database...
   const [makeformdata, setMakeformdata] = useState({
-    fullname1: "", fullname2: "",
-    jobtitle: "", city: "", state: "AK - Alaska", pincode: "", email: "",
+    fullname1: "", fullname2: "", jobtitle: "",
+    address: "", city: "", state: "AK - Alaska", pincode: "", email: "",
     phone: "", linkedin: "", github: ""
   })
 
   useEffect(() => {
+    echo_message();
     getresumedetails()
-  }, []);
+  }, [id]);
+
+  const echo_message = () => {
+    try {
+      if (location.state.massage == "resume_created") {
+        toast.success("resume saved under my resume", {
+          position: "top-center", autoCloseautoClose: 100,
+        })
+        //alert("okkkk")
+      }
+    } catch (e) { }
+  }
 
   const getresumedetails = () => {
     axios.get(process.env.REACT_APP_SERVER_URL + '/getresumedetails/' + resumeId)
@@ -36,8 +55,8 @@ const Personal = () => {
         console.log(response.data)
         var resumed = response.data;
         setMakeformdata({
-          fullname1: resumed.firstname, fullname2: resumed.secondname,
-          jobtitle: resumed.designation, city: resumed.city, state: resumed.state, pincode: resumed.pincode, email: resumed.emailId,
+          fullname1: resumed.firstname, fullname2: resumed.secondname, jobtitle: resumed.designation,
+          address: resumed.address, city: resumed.city, state: resumed.state, pincode: resumed.pincode, email: resumed.emailId,
           phone: resumed.phonenumber, linkedin: resumed.linkedin, github: resumed.github
         })
         setSkills(resumed.skills)
@@ -49,33 +68,35 @@ const Personal = () => {
     let name = event.target.name
     setMakeformdata((prev) => {
       if (name === "fullname1") {
-        return { fullname1: val, fullname2: prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: val, fullname2: prev.fullname2, jobtitle: prev.jobtitle, address: prev.address, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "fullname2") {
-        return { fullname1: prev.fullname1, fullname2: val, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2: val, jobtitle: prev.jobtitle, address: prev.address, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "jobtitle") {
-        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: val, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: val, address: prev.address, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+      } else if (name === "address") {
+        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, address: val, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "city") {
-        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, city: val, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, address: prev.address, city: val, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "state") {
-        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: val, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, address: prev.address, city: prev.city, state: val, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "pincode") {
-        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: val, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, address: prev.address, city: prev.city, state: prev.state, pincode: val, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "email") {
-        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: val, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, address: prev.address, city: prev.city, state: prev.state, pincode: prev.pincode, email: val, phone: prev.phone, linkedin: prev.linkedin, github: prev.github }
       } else if (name === "phone") {
         var phone = val;
         var newPhone = phone.replaceAll("-", "");
         var currval = "";
         if (newPhone.length === 10) {
           currval = newPhone.substr(0, 3) + "-" + newPhone.substr(3, 3) + "-" + newPhone.substr(6)
-          return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: currval, linkedin: prev.linkedin, github: prev.github }
+          return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, address: prev.address, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: currval, linkedin: prev.linkedin, github: prev.github }
         } else {
-          return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: val, linkedin: prev.linkedin, github: prev.github }
+          return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, address: prev.address, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: val, linkedin: prev.linkedin, github: prev.github }
         }
       } else if (name === "linkedin") {
-        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: val, github: prev.github }
+        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, address: prev.address, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: val, github: prev.github }
       } else {
-        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: val }
+        return { fullname1: prev.fullname1, fullname2: prev.fullname2, jobtitle: prev.jobtitle, address: prev.address, city: prev.city, state: prev.state, pincode: prev.pincode, email: prev.email, phone: prev.phone, linkedin: prev.linkedin, github: val }
       }
 
     })
@@ -88,7 +109,7 @@ const Personal = () => {
 
     // name case
     if (makeformdata.fullname1 === "") {
-      setNamew1("First name can not be empty ! ")
+      setNamew1("first name can not be empty ! ")
       flag = false
     } else {
       var ifOnlyAlphabet = /^[a-zA-Z\s.,]+$/.test(makeformdata.fullname1);
@@ -101,7 +122,7 @@ const Personal = () => {
     }
 
     if (makeformdata.fullname2 === "") {
-      setNamew2("Second  name can not be empty ! ")
+      setNamew2("last name can not be empty ! ")
       flag = false
     } else {
       var ifOnlyAlphabet = /^[a-zA-Z\s.,]+$/.test(makeformdata.fullname2);
@@ -120,12 +141,23 @@ const Personal = () => {
       setJobtitlew("")
     }
 
+    if (makeformdata.address === "") {
+      console.log("herererre")
+      setAddressw("please enter your address ")
+      flag = false
+    } else {
+      setAddressw("")
+    }
+
+
     if (makeformdata.city === "") {
       setcityw("please enter your city")
       flag = false
     } else {
       setcityw("")
     }
+
+
 
     if (makeformdata.state === "") {
       setStatew("please enter your state")
@@ -135,7 +167,7 @@ const Personal = () => {
     }
 
     if (makeformdata.pincode === "") {
-      setPincodew("please enter your pincode ")
+      setPincodew("please enter your zipcode ")
       flag = false
     } else {
       var onlyNumber = /^[0-9\s.,]+$/.test(makeformdata.pincode);
@@ -151,7 +183,7 @@ const Personal = () => {
     var newPhone = phone.replaceAll("-", "");
     console.log(newPhone)
     if (newPhone.length != 10) {
-      setPhonew("enter a correct phone-no of 10 digit (111-222-3333) ")
+      setPhonew("enter a valid phone-no of 10 digit (111-222-3333) ")
       flag = false
     } else {
       setPhonew("")
@@ -175,11 +207,13 @@ const Personal = () => {
       resume.resumeid = resumeId
       resume.date = new Date();
       resume.templateid = templateId
+      resume.medoreng = field
 
       resume.firstname = makeformdata.fullname1
       resume.secondname = makeformdata.fullname2
       resume.designation = makeformdata.jobtitle
 
+      resume.address = makeformdata.address
       resume.state = makeformdata.state
       resume.city = makeformdata.city
       resume.pincode = makeformdata.pincode
@@ -198,7 +232,7 @@ const Personal = () => {
           console.log(response.data)
           //setBlood(response.data)
         }, (error) => { })
-      navigate("/entereducationaldetails/" + resumeId + "/" + templateId)
+      navigate("/entereducationaldetails/" + resumeId + "/" + field + "/" + templateId)
 
 
     }
@@ -212,18 +246,18 @@ const Personal = () => {
   return (
 
     <div class="enter_resume_details">
-
+      <ToastContainer />
       <Navbar />
 
       <div id="topsectiondetails" class="container mt-5">
         <div class="heading p-3 mt-3">
-          <h1> ENTER PERSONAL DETAILS </h1>
+          <h1> Enter personal information </h1>
         </div>
 
         <div class="d-flex flex-row mt-2 justify-content-between">
           <div class="mt-2 each_box1_personal">
             <div class=" ">
-              <div class="h4"> Enter First Name</div>
+              <div class="h4"> first name</div>
             </div>
             <div class="input_box_text w-100">
               <input name="fullname1" onChange={update} class="w-100  px-3 p-large" type="text" value={makeformdata.fullname1} />
@@ -233,7 +267,7 @@ const Personal = () => {
 
           <div class="mt-2 each_box1_personal">
             <div class=" ">
-              <div class="h4"> Enter Last Name</div>
+              <div class="h4"> last name</div>
             </div>
             <div class="input_box_text w-100">
               <input name="fullname2" onChange={update} class="w-100  px-3 p-large" type="text" value={makeformdata.fullname2} />
@@ -243,7 +277,7 @@ const Personal = () => {
 
           <div class="mt-2 each_box1_personal">
             <div class=" ">
-              <div class="h4"> Enter Job Title</div>
+              <div class="h4"> job title</div>
             </div>
             <div class="input_box_text w-100 px-2">
               <input onChange={update} name="jobtitle" class="w-100  p-large" type="text" value={makeformdata.jobtitle} />
@@ -260,12 +294,17 @@ const Personal = () => {
           </div>
           <div class="d-flex flex-row justify-content-between">
             <div class="each_box1_personal">
-              <div class="h4"> Enter city</div>
+              <div class="h4"> Address</div>
+              <input onChange={update} name="address" class="w-100 input_box_text px-3 p-large" type="text" value={makeformdata.address} />
+              <div class="p-small text-danger"> {addressw} </div>
+            </div>
+            <div class="each_box1_personal">
+              <div class="h4"> city</div>
               <input onChange={update} name="city" class="w-100 input_box_text px-3 p-large" type="text" value={makeformdata.city} />
               <div class="p-small text-danger"> {cityw} </div>
             </div>
             <div class="each_box1_personal ">
-              <div class="h4"> Enter state </div>
+              <div class="h4"> state </div>
               <div class=" input_box_text py-3 px-4 h6 " name="state" placeholder="eg. AK - Alaska">
                 <select name="state" onChange={update} class="w-100" value={makeformdata.state}>
                   <option value='AK - Alaska'>AK - Alaska</option>
@@ -330,7 +369,7 @@ const Personal = () => {
               <div class="p-small text-danger"> {statew} </div>
             </div>
             <div class="each_box1_personal">
-              <div class="h4"> Enter your Zipcode</div>
+              <div class="h4"> zipcode</div>
               <input onChange={update} name="pincode" class="w-100 input_box_text px-3 p-large" type="text" value={makeformdata.pincode} />
               <div class="p-small text-danger"> {pincodew} </div>
             </div>
@@ -340,7 +379,7 @@ const Personal = () => {
         <div class="d-flex flex-row mt-3 justify-content-between">
           <div class="mt-2 each_box">
             <div class=" ">
-              <div class="h4"> Enter Your Email Address</div>
+              <div class="h4"> email address</div>
             </div>
             <div class="input_box_out w-100">
               <input onChange={update} name="email" class="w-100 input_box_text px-3 p-large" type="mail" value={makeformdata.email} />
@@ -350,8 +389,8 @@ const Personal = () => {
 
           <div class="mt-2 each_box">
             <div class=" ">
-              <div class="h4"> Enter Your Phone Number</div>
-              <div class="p-small text-info font-weight-bold"> For international number add country code ( eg +1)</div>
+              <div class="h4"> phone number</div>
+              {/*<div class="p-small text-info font-weight-bold"> For international number add country code ( eg +1)</div> */}
             </div>
             <div class="input_box_out w-100">
               <input onChange={update} name="phone" class="w-100 input_box_text px-3 p-large" type="text" value={makeformdata.phone} />
@@ -362,13 +401,13 @@ const Personal = () => {
 
 
         <div class="heading p-3 mt-3">
-          <h1> ENTER SOCIEL PROFILES </h1>
+          <h1> Social profile </h1>
         </div>
 
 
         <div class="mt-3">
           <div class=" ">
-            <div class="h4"> Enter Your Linkedin Profile Link</div>
+            <div class="h4"> LinkedIn profile link</div>
           </div>
           <div class="input_box_text px-3 d-flex flex-row">
             <div class="px-3 py-2">
@@ -380,7 +419,7 @@ const Personal = () => {
 
         <div class="mt-3">
           <div class=" ">
-            <div class="h4"> Enter Your Github Profile Link</div>
+            <div class="h4"> GitHub profile link</div>
           </div>
           <div class="input_box_text px-3 d-flex flex-row">
             <div class="px-3 py-2">
@@ -394,11 +433,13 @@ const Personal = () => {
 
         <div class="d-flex flex-row justify-content-between my-5 border-bottom-link">
           <div class="p-large  text-white px-3" >
-
+            <a href={"/choosetemplates/" + resumeId + "/" + field}>
+              <i class="fa fa-arrow-circle-left text-white" aria-hidden="true"></i> <span class="px-2 text-white"> Change template </span>
+            </a>
           </div>
 
           <div class="p-large cursor_pointer text-white px-3" onClick={saveThePersonal}>
-            <span class="px-2 text-white">Save And Go Next </span>  <i class="fa fa-forward text-white" aria-hidden="true"></i>
+            <span class="px-2 text-white">Save and go next </span>  <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </div>
         </div>
 

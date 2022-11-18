@@ -57,20 +57,20 @@ const Whattoshow = (props) => {
       <>
         <div class="mt-3 ">
           <div class="">
-            <div class="h4"> Enter The Achivment Title </div>
+            <div class="h4"> Achivement title </div>
           </div>
           <div class="input_box_text px-3 d-flex flex-row">
             <div class="px-3 py-2">
               <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
             </div>
-            <input name="achivmentname" onChange={update} class="w-100  p-large" type="text" placeholder="eg.. ML training" />
+            <input name="achivmentname" onChange={update} class="w-100  p-large" type="text" placeholder="enter achivement title " />
           </div>
           <div class="p-small text-danger py-2"> {achcnamew} </div>
         </div>
 
         <div class="mt-3">
           <div class="">
-            <div class="h4"> Enter supporting  link </div>
+            <div class="h4"> Certificate  link </div>
           </div>
           <div class="input_box_text px-3 d-flex flex-row">
             <div class="px-3 py-2">
@@ -82,7 +82,7 @@ const Whattoshow = (props) => {
 
         <div class="mt-2">
           <div class="top_header_button h5 p-3 w-100 cursor_pointer text-center" onClick={addthisachivement}>
-            Add This Achivement
+            Add
             <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
           </div>
         </div>
@@ -95,9 +95,10 @@ const Whattoshow = (props) => {
 
 
 const Achivments = () => {
-  const { templateId, resumeId } = useParams()
+  const { templateId, field, resumeId } = useParams()
   const [editoradd, setEditoradd] = useState(0);
   const [existingachivments, setExistingachivments] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getallachivments()
@@ -117,6 +118,10 @@ const Achivments = () => {
         window.location.reload()
       }, (error) => { })
   }
+  const previewanddownload = () => {
+    const link = "/showresults/" + resumeId + "/" + templateId + "/" + field
+    navigate(link, { state: { message: "saved_resume" } })
+  }
 
 
 
@@ -132,8 +137,8 @@ const Achivments = () => {
 
 
           <div class="flexbox_side">
-            <div class="heading p-3 mt-3 add_border_on_heading">
-              <h2> EXISTING ACHIVMENT DETAILS </h2>
+            <div class="heading p-3 mt-3 ">
+              <h2> Achivement </h2>
             </div>
 
             {existingachivments.map((d, index) => (
@@ -146,7 +151,7 @@ const Achivments = () => {
                 </div>
                 <div class="d-flex flex-row">
                   <div class="mt-2 each_box">
-                    <div class="top_header_button1 h5 p-3 w-100 cursor_pointer" onClick={()=>deletethisachivment(d.achid)}>
+                    <div class="top_header_button1 h5 p-3 w-100 cursor_pointer" onClick={() => deletethisachivment(d.achid)}>
                       delete
                       <span class=" px-3 "> <i class="fa fa-trash-o" aria-hidden="true"></i> </span>
                     </div>
@@ -167,8 +172,8 @@ const Achivments = () => {
           </div>
 
           <div class="flexbox_side">
-            <div class="heading p-3 mt-3 w-100 add_border_on_heading">
-              <h2> ENTER NEW ACHIVEMENTS </h2>
+            <div class="heading p-3 mt-3 w-100">
+              <h2> New achivement </h2>
             </div>
             <Whattoshow editoradd={editoradd} resumeId={resumeId} getallachivments={getallachivments} />
           </div>
@@ -178,17 +183,15 @@ const Achivments = () => {
 
         <div class="d-flex flex-row justify-content-between my-5 border-bottom-link">
           <div class="p-large cursor_pointer text-white px-3">
-            <a href={"/enterskills/" + resumeId + "/" + templateId} class="text-white"><i class="fa fa-backward" aria-hidden="true"></i>
+            <a href={"/enterskills/" + resumeId + "/" + field + "/" + templateId} class="text-white"><i class="fa fa-backward" aria-hidden="true"></i>
               <span class="px-2">Go Previous </span></a>
           </div>
         </div>
 
-        <div class="d-flex flex-row justify-content-center my-5 ">
-          <a href={"/showresults/" + resumeId + "/" + templateId} >
-            <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3">
-              <span class="px-2"> PREVIEW and DOWNLOAD </span>
-            </div>
-          </a>
+        <div class="d-flex flex-row justify-content-center my-5 " onClick={previewanddownload}>
+          <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3" >
+            <span class="px-2"> preview and download </span>
+          </div>
         </div>
 
 

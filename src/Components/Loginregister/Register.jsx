@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import './login.css';
 import '../common.css'
+import Navbaronlyhome from '../Navbar/Navbaronlyhome'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,14 +23,25 @@ const Register = () => {
         position: "top-right", autoClose: 2000,
       })
       return;
-    } else if (formdata.email === "") {
+    }
+
+    if (formdata.email === "") {
       toast.error("🚫 username too small", {
         position: "top-right", autoClose: 2000,
       })
       return;
+    } else {
+      var validEmail = formdata.email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+      if (!validEmail) {
+        toast.error("🚫 enter valid email id", {
+          position: "top-right", autoClose: 2000,
+        })
+        return;
+      }
+
     }
-    var parts = formdata.username.match(/.{1,15}/g);
-    var new_username = parts.join(" ");
+    //var parts = formdata.username.match(/.{1,15}/g);
+    //var new_username = parts.join(" ");
 
 
     let user = {
@@ -84,6 +96,7 @@ const Register = () => {
   return (
     <div class="login_css">
       <ToastContainer />
+      <Navbaronlyhome />
       <div>
         <div class="container-fluid">
           <div class="row login_page_outside">
@@ -109,7 +122,7 @@ const Register = () => {
                         <i class="fa-solid fa-at fa-2x"></i>
                       </div>
                       <div class="col-lg-10 col-10">
-                        <input onChange={update} class="w-100 p-3" name="email" type="email" placeholder="enter your emailId" />
+                        <input onChange={update} class="w-100 p-3" name="email" type="email" placeholder="emailId" />
                       </div>
                     </div>
                   </div>
@@ -123,7 +136,7 @@ const Register = () => {
                         <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
                       </div>
                       <div class="col-lg-10 col-10">
-                        <input onChange={update} class="w-100 p-3" name="username" type="text" placeholder="enter your username" />
+                        <input onChange={update} class="w-100 p-3" name="username" type="text" placeholder="username" />
                       </div>
                     </div>
                   </div>
@@ -137,7 +150,7 @@ const Register = () => {
                         <i class="fa-solid fa-lock fa-2x"></i>
                       </div>
                       <div class="col-lg-10 col-10">
-                        <input onChange={update} class="w-100 p-3" name="password" type="password" placeholder="enter your password" />
+                        <input onChange={update} class="w-100 p-3" name="password" type="password" placeholder="password" />
                       </div>
                     </div>
 
@@ -166,12 +179,12 @@ const Register = () => {
 </div>*/}
 
                 <div class="h2 text-center mt-3 make_it_pointer login_button p-3 cursor_pointer" onClick={trytoregister}>
-                  REGISTER <i class="fa-solid fa-fingerprint"></i>
+                  REGISTER {/*<i class="fa-solid fa-fingerprint"></i>*/}
                 </div>
 
 
                 <div class="p-small register_here make_it_pointer text-center" >
-                  <a href="/login" style={{ "color": "#3c4852" }}>already have an account login here </a>
+                  <a href="/login" style={{ "color": "#3c4852" }}>already have an account <span class="underline_it">login here</span> </a>
                 </div>
 
 

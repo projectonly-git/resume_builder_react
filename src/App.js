@@ -26,6 +26,7 @@ import Profile from './Components/Profile/Profile'
 
 import Login from './Components/Loginregister/Login'
 import Register from './Components/Loginregister/Register'
+import About from './Components/About/About'
 
 function App() {
   return (
@@ -47,37 +48,43 @@ function App() {
       </Routes>
 
       <Routes>
-        <Route path="/userchooseme" element={<Userchooseme />} />
+        <Route path="/about" element={<About />} />
       </Routes>
 
       <Routes>
-        <Route path="/choosetemplates" element={<Templategallery />} />
+        <Route path="/userchooseme/:resumeId" element={<Userchooseme />} />
       </Routes>
 
       <Routes>
-        <Route path="/enterpersonaldetails/:resumeId/:templateId" element={<Personal />} />
-      </Routes>
-
-      <Routes>
-        <Route path="/entereducationaldetails/:resumeId/:templateId" element={<Education />} />
-      </Routes>
-
-      <Routes>
-        <Route path="/enterprojectdetails/:resumeId/:templateId" element={<Projects />} />
-      </Routes>
-
-      <Routes>
-        <Route path="/enterskills/:resumeId/:templateId" element={<Skills />} />
-      </Routes>
-
-      <Routes>
-        <Route path="/enterachivments/:resumeId/:templateId" element={<Achivments />} />
+        <Route path="/choosetemplates/:resumeId/:field" element={<Templategallery />} />
       </Routes>
 
 
 
       <Routes>
-        <Route path="/showresults/:resumeId/:templateId" element={<Templatehead />} />
+        <Route path="/enterpersonaldetails/:resumeId/:field/:templateId" element={<Personal />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/entereducationaldetails/:resumeId/:field/:templateId" element={<Education />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/enterprojectdetails/:resumeId/:field/:templateId" element={<Projects />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/enterskills/:resumeId/:field/:templateId" element={<Skills />} />
+      </Routes>
+
+      <Routes>
+        <Route path="/enterachivments/:resumeId/:field/:templateId" element={<Achivments />} />
+      </Routes>
+
+
+
+      <Routes>
+        <Route path="/showresults/:resumeId/:templateId/:field" element={<Templatehead />} />
       </Routes>
 
 

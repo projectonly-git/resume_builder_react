@@ -22,7 +22,7 @@ const Showeducation = (props) => {
   } else {
     return (
       <>
-        <Educationedit getAlleducation={props.getAlleducation} resumeId={props.resumeId} editingoedu={props.editingoedu} />
+        <Educationedit getAlleducation={props.getAlleducation} resumeId={props.resumeId} editingoedu={props.editingoedu} updateEditingornewtoadd={props.updateEditingornewtoadd} />
       </>
     )
   }
@@ -30,7 +30,7 @@ const Showeducation = (props) => {
 
 
 const Education = () => {
-  const { templateId, resumeId } = useParams()
+  const { templateId, field, resumeId } = useParams()
   const [editingornew, setEditingornew] = useState(0);
   const [editingoedu, setEditingoedu] = useState({});
 
@@ -46,6 +46,10 @@ const Education = () => {
     setEditingornew(1)
     setEditingoedu(curredu)
   }
+
+  const updateEditingornewtoadd = () => {
+    setEditingornew(0)
+  }
   const deleteEducation = (eid) => {
     axios.get(process.env.REACT_APP_SERVER_URL + '/deleteeducationdetails/' + eid)
       .then((response) => {
@@ -59,6 +63,11 @@ const Education = () => {
         console.log(response.data)
         setExistingdetails(response.data)
       }, (error) => { })
+  }
+
+  const previewanddownload = () =>{
+    const link ="/showresults/" + resumeId + "/" + templateId +"/" + field
+    navigate(link, {state : {message: "saved_resume"}} )
   }
 
 
@@ -128,10 +137,10 @@ const Education = () => {
 
           <div class="flexbox_side">
             <div class="heading p-3 mt-3 w-100">
-              <h2> ENTER NEW EDUCATION </h2>
+              <h2> EDUCATION </h2>
             </div>
 
-            <Showeducation editingornew={editingornew} getAlleducation={getAlleducation} resumeId={resumeId} editingoedu={editingoedu} />
+            <Showeducation editingornew={editingornew} updateEditingornewtoadd={updateEditingornewtoadd} getAlleducation={getAlleducation} resumeId={resumeId} editingoedu={editingoedu} />
 
 
 
@@ -150,20 +159,18 @@ const Education = () => {
 
         <div class="d-flex flex-row justify-content-between my-5 border-bottom-link">
           <div class="p-large cursor_pointer text-white px-3" >
-            <a href={"/enterpersonaldetails/" + resumeId + "/" + templateId} class="text-white"><i class="fa fa-backward" aria-hidden="true"></i>
+            <a href={"/enterpersonaldetails/" + resumeId + "/" + field + "/" + templateId} class="text-white"><i class="fa fa-backward" aria-hidden="true"></i>
               <span class="px-2">Go Previous </span> </a>
           </div>
           <div class="p-large cursor_pointer text-white px-3" >
-            <a href={"/enterprojectdetails/" + resumeId + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i> </a>
+            <a href={"/enterprojectdetails/" + resumeId + "/" + field + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i> </a>
           </div>
         </div>
 
-        <div class="d-flex flex-row justify-content-center my-5 ">
-          <a href={"/showresults/" + resumeId + "/" + templateId} >
+        <div class="d-flex flex-row justify-content-center my-5 " onClick={previewanddownload}>
             <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3" >
-              <span class="px-2"> PREVIEW and DOWNLOAD </span>
+              <span class="px-2"> preview and download </span>
             </div>
-          </a>
         </div>
 
 

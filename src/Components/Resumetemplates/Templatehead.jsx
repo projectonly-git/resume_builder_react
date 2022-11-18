@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 import Templateone from './Templateone'
 import Templatetwo from './Templatetwo'
@@ -7,25 +7,64 @@ import Templatethree from './Templatethree'
 import Templatefour from './Templatefour'
 
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Templatehead = () => {
-  const { templateId, resumeId } = useParams()
+  const { resumeId, templateId, field } = useParams()
+  const location = useLocation();
 
-  if(templateId == 1){
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    echo_message()
+  }, []);
+
+  const echo_message = () => {
+    try {
+
+      if (location.state.message === "saved_resume") {
+        toast.success("resume saved under my resume", {
+          position: "top-center", autoCloseautoClose: 100,
+        })
+      }
+    } catch (err) { }
+  }
+
+
+
+  if (templateId == 1) {
     return (
-      <Templateone resumeId={resumeId} />
+      <>
+        <ToastContainer />
+        <Templateone resumeId={resumeId} />
+      </>
+
     )
-  }else if(templateId == 2){
+  } else if (templateId == 2) {
     return (
-      <Templatetwo resumeId={resumeId} />
+      <>
+        <ToastContainer />
+        <Templatetwo resumeId={resumeId} />
+
+      </>
     )
-  }else if(templateId == 3 ){
+  } else if (templateId == 3) {
     return (
-      <Templatethree resumeId={resumeId} />
+      <>
+        <ToastContainer />
+        <Templatethree resumeId={resumeId} />
+
+      </>
     )
-  }else{
+  } else {
     return (
-      <Templatefour resumeId={resumeId} />
+      <>
+        <ToastContainer />
+        <Templatefour resumeId={resumeId} />
+
+      </>
     )
   }
 

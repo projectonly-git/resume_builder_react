@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-
+import Navbaronlyhome from '../Navbar/Navbaronlyhome'
 import '../common.css';
 import './login.css';
 
@@ -52,7 +52,7 @@ const Login = () => {
             position: "top-right", autoClose: 2000,
           })
         } else {
-          navigate('/',{state:{massage:"loggedin"}});
+          navigate('/', { state: { massage: "loggedin" } });
         }
       }, (error) => {
         toast.error("Email Not preasent! register", {
@@ -65,6 +65,7 @@ const Login = () => {
 
     <div class="login_css">
       <ToastContainer />
+      <Navbaronlyhome />
       <div>
         <div class="container-fluid">
           <div class="row login_page_outside">
@@ -84,7 +85,7 @@ const Login = () => {
                         <i class="fa-solid fa-envelope-circle-check fa-2x"></i>
                       </div>
                       <div class="col-lg-10 col-10">
-                        <input onChange={update} class="w-100 p-3" name="email" type="email" placeholder="enter your email address" />
+                        <input onChange={update} class="w-100 p-3" name="email" type="email" placeholder="email address" />
                       </div>
                     </div>
                   </div>
@@ -98,7 +99,7 @@ const Login = () => {
                         <i class="fa-solid fa-lock fa-2x"></i>
                       </div>
                       <div class="col-lg-10 col-10">
-                        <input onChange={update} class="w-100 p-3" name="password" type="password" placeholder="enter your password" />
+                        <input onChange={update} class="w-100 p-3" name="password" type="password" placeholder="password" />
                       </div>
                     </div>
 
@@ -106,14 +107,14 @@ const Login = () => {
                 </div>
 
                 <div class="h2 text-center mt-3  login_button p-3 cursor_pointer" onClick={trytologin} >
-                  LOG IN <i class="fa-solid fa-fingerprint"></i>
+                  LOG IN {/*<i class="fa-solid fa-fingerprint"></i>*/}
                 </div>
                 <div class="p-small register_here make_it_pointer text-center cursor_pointer">
-                  <a href="/register" style={{ "color": "#3c4852" }}>don't have an account register </a>
+                  <a href="/register" style={{ "color": "#3c4852" }}>don't have an account <span class="underline_it"> register </span> </a>
                 </div>
-                <div class="p-small register_here make_it_pointer text-center cursor_pointer">
+                {/*<div class="p-small register_here make_it_pointer text-center cursor_pointer">
                   <a href="/" style={{ "color": "red" }}>return to home </a>
-                </div>
+  </div>*/}
 
 
 

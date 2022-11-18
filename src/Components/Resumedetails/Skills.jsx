@@ -9,7 +9,7 @@ import '../common.css'
 
 
 const Skills = () => {
-  const { templateId, resumeId } = useParams()
+  const { templateId, field, resumeId } = useParams()
   const navigate = useNavigate();
   const [skill, setSkill] = useState("");
   const [exskill, setExskill] = useState([])
@@ -25,12 +25,12 @@ const Skills = () => {
     axios.get(process.env.REACT_APP_SERVER_URL + '/getresumedetails/' + resumeId)
       .then((response) => {
         console.log(response.data)
-        var skill_str = response.data.skills ;
+        var skill_str = response.data.skills;
         skill_str = skill_str.replace("null", "")
-        if(skill_str.length === 0) setExskill([])
-        else{
-           var skill_arr = skill_str.substr(0, skill_str.length - 1).split(",")
-           setExskill(skill_arr);
+        if (skill_str.length === 0) setExskill([])
+        else {
+          var skill_arr = skill_str.substr(0, skill_str.length - 1).split(",")
+          setExskill(skill_arr);
         }
       }, (error) => { })
 
@@ -59,6 +59,10 @@ const Skills = () => {
       .then((response) => {
         window.location.reload()
       }, (error) => { })
+  }
+  const previewanddownload = () => {
+    const link = "/showresults/" + resumeId + "/" + templateId + "/" + field
+    navigate(link, { state: { message: "saved_resume" } })
   }
 
 
@@ -135,20 +139,18 @@ const Skills = () => {
 
         <div class="d-flex flex-row justify-content-between my-5 border-bottom-link">
           <div class="p-large cursor_pointer text-white px-3" onClick={goPrevious}>
-            <a href={"/enterprojectdetails/" + resumeId + "/" + templateId} class="text-white"><i class="fa fa-backward" aria-hidden="true"></i>
+            <a href={"/enterprojectdetails/" + resumeId + "/" + field + "/" + templateId} class="text-white"><i class="fa fa-backward" aria-hidden="true"></i>
               <span class="px-2">Go Previous </span></a>
           </div>
           <div class="p-large cursor_pointer text-white px-3" onClick={goNext}>
-            <a href={"/enterachivments/" + resumeId + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i></a>
+            <a href={"/enterachivments/" + resumeId + "/" + field + "/" + templateId} class="text-white"><span class="px-2">Go Next </span>  <i class="fa fa-forward" aria-hidden="true"></i></a>
           </div>
         </div>
 
-        <div class="d-flex flex-row justify-content-center my-5 ">
-          <a href={"/showresults/" + resumeId + "/" + templateId} >
-            <div class=" h3 cursor_pointer text-white px-3 save_and_preview py-3">
-              <span class="px-2"> PREVIEW and DOWNLOAD </span>
-            </div>
-          </a>
+        <div class="d-flex flex-row justify-content-center my-5 " onClick={previewanddownload}>
+          <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3" >
+            <span class="px-2"> preview and download </span>
+          </div>
         </div>
 
 

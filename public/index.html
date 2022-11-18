@@ -42,11 +42,11 @@
     $(window).scroll(function () {
       var scroll = $(window).scrollTop();
       if (scroll >= 5) {
-        $('.outerNavbar').addClass("fixed-top");
+        $('#navbar').addClass("fixed-top");
         echo("hello")
         //$('.navbar1').removeClass("fixed-top");
       } else {
-        $('.outerNavbar').removeClass("fixed-top");
+        $('#navbar').removeClass("fixed-top");
         //$('.navbar1').removeClass("fixed-top");
       }
     });

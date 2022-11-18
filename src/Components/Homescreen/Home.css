@@ -1,26 +1,62 @@
-
-.home_hero_section .header{
-    padding-top: 100px;
+.home_hero_section .header {
+  padding-top: 200px;
 }
 
-.home_hero_section .top_header_button{
-    background-color : #3c4852;
-    color : white;
-    width : 50%;
-    border-radius : 10px ;
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
+  }
+
+  to {
+    background-position: -200% center;
+  }
+}
+
+.gradiend_text {
+  animation: background-pan 3s linear infinite;
+  background: #f7ff00;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #db36a4, #f7ff00);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #db36a4, #f7ff00);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+  background-size: 200%;
+}
+
+.home_hero_section .top_header_button {
+  background-color: #3c4852;
+  color: white;
+  width: 50%;
+  border-radius: 10px;
+  position: relative;
 }
 
 
-.home_hero_section .set_background{
-    background-color : #e8e3ff ;
-    border-radius: 30px ;
+.top_header_button:hover {
+  border-radius: 10px;
+  background: #ff0084;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #33001b, #ff0084);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #33001b, #ff0084);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.home_hero_section .numbering{
-    background-color : #3c4852;
-    color : white ;
-    border-radius : 20px ;
+.home_hero_section .set_background {
+  background-color: #e8e3ff;
+  border-radius: 30px;
 }
 
+.home_hero_section .numbering {
+  background-color: #3c4852;
+  color: white;
+  border-radius: 20px;
+}
 
-
+.home_hero_section .home_screen_learn {
+  position: relative;
+  margin-top: 350px;
+}

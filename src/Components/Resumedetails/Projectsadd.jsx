@@ -10,6 +10,15 @@ import '../common.css'
 
 
 const Projectsadd = (props) => {
+
+  //________________________________________________________________________________________________________________________________
+  const [value, setValue] = useState(""); // for end year  
+  const [check, setCheck] = useState(false); // for end year checkbox
+  const [start, setStart] = useState("2000"); // start year
+  const [showorhide, setShoworhide] = useState("") // for end year checkbox show or hide
+
+
+
   const [posw, setPosw] = useState("")
   const [companyw, setCompanyw] = useState("")
   const [workdw, setWorkdw] = useState("")
@@ -27,12 +36,29 @@ const Projectsadd = (props) => {
       } else if (name === "starttime") {
         return { position: prev.position, company: prev.company, starttime: val, endtime: prev.endtime, workd: prev.workd }
       } else if (name === "endtime") {
+        setValue(val);
         return { position: prev.position, company: prev.company, starttime: prev.starttime, endtime: val, workd: prev.workd }
       } else {
         return { position: prev.position, company: prev.company, starttime: prev.starttime, endtime: prev.endtime, workd: val }
       }
     })
     //console.log(makeformdata)
+  }
+
+  const handleCheckboxChange = (event) => {
+    setCheck(!check);
+    var isChecked = event.target.checked;
+    if (!check) {
+      setMakeformdata((prev) => {
+        return { position: prev.position, company: prev.company, starttime: prev.starttime, endtime: "present", workd: prev.workd }
+      })
+      setShoworhide("d-none");
+    } else {
+      setMakeformdata((prev) => {
+        return { position: prev.position, company: prev.company, starttime: prev.starttime, endtime: value, workd: prev.workd }
+      })
+      setShoworhide("");
+    }
   }
 
 
@@ -71,7 +97,7 @@ const Projectsadd = (props) => {
       axios.post(process.env.REACT_APP_SERVER_URL + '/saveexperiencedetails/' + props.resumeId, exp)
         .then((response) => {
           console.log(response.data)
-          props.getAllexp()
+          //props.getAllexp()
           window.location.reload()
         }, (error) => { })
     }
@@ -86,7 +112,7 @@ const Projectsadd = (props) => {
     <>
       <div class="mt-3">
         <div class=" ">
-          <div class="h4"> Enter The Position </div>
+          <div class="h4"> Position </div>
         </div>
         <div class="input_box_text px-3 d-flex flex-row">
           <div class="px-3 py-2">
@@ -99,7 +125,7 @@ const Projectsadd = (props) => {
 
       <div class="mt-3">
         <div class=" ">
-          <div class="h4"> Enter Company name </div>
+          <div class="h4"> Organisation </div>
         </div>
         <div class="input_box_text px-3 d-flex flex-row">
           <div class="px-3 py-2">
@@ -112,22 +138,34 @@ const Projectsadd = (props) => {
 
 
       <div class="mt-3 ">
-        <div class="">
-          <div class="h4"> Enter Duration</div>
-        </div>
+
         <div class="d-flex flex-row">
           <div class="">
-            <input name="starttime" onChange={update} class=" input_box_text px-3 p-large" type="date" placeholder="start eg.. MM/YYYY" />
+            <div class="h4"> start time</div>
+            <input name="starttime" onChange={update} class=" input_box_text px-3 p-large" type="month" placeholder="start eg.. MM/YYYY" />
           </div>
           <div class="px-3 ">
-            <input name="endtime" onChange={update} class=" input_box_text px-3 p-large" type="date" placeholder="end eg.. MM/YYYY" />
+            <div class="h4"> end time</div>
+            <div class={showorhide}>
+              <input name="endtime" onChange={update} class={" input_box_text px-3 p-large"} type="month" placeholder="end eg.. MM/YYYY" />
+            </div>
+            <div class="d-flex flex-row">
+              <input type="checkbox" name="endyearcheckbox" value="present" onChange={handleCheckboxChange} checked={check} />
+              <div class="px-3 py-2">
+                <label for="element" class="p-small py-2">Present</label>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
 
       <div class="mt-3">
         <div class="">
-          <div class="h4"> Enter Work Description </div>
+          <div class="h4">
+            Work description
+            <span class="p-small cursor_pointer text-danger tt" data-bs-toggle="tooltip" data-bs-placement="left" title="max words 250" >(<i class="fa fa-info" aria-hidden="true"></i>)</span>
+          </div>
         </div>
         <div class="input_box_text_area_project px-3 d-flex flex-row">
           {/*<textbox class="w-100  p-large" type="text" placeholder="eg.. 90" />*/}
@@ -140,7 +178,7 @@ const Projectsadd = (props) => {
       <div class="mt-2">
 
         <div class="top_header_button h5 p-3 w-100 cursor_pointer text-center" onClick={saveThisExperience}>
-          Add This Experince
+          Add
           <span class=" px-3 "><i class="fa fa-play" aria-hidden="true"></i> </span>
         </div>
       </div>
