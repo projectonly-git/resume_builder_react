@@ -233,12 +233,12 @@ const Templatefour = (params) => {
       </div>
 
 
-      <div class="w-50 container print_button cursor_pointer" >
+      <div class="w-50 container print_button" >
         <div class="h6 d-flex flex-row justify-content-center my-5 border-bottom-link">
-          <div class="py-4 text-white px-3 bg-success" onClick={printDocument}>
+          <div class="py-4 text-white px-3 bg-success cursor_pointer" onClick={printDocument}>
             <span class="px-2">download</span>
           </div>
-          <div class="py-4  text-white px-3 bg-warning" onClick={reedit}>
+          <div class="py-4  text-white px-3 bg-warning cursor_pointer" onClick={reedit}>
             <span class="px-2">continue to edit</span>
           </div>
         </div>

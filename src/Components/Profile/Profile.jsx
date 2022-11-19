@@ -62,8 +62,8 @@ const Profile = () => {
               <div class="make_bg_grey h5 p-3">
                 {d.resumeid}___{d.date}
                 <div class="d-flex flex-row h3 py-3 justify-content-center">
-                  <a className="cursor_pointer" href={"/enterpersonaldetails/" + d.resumeid + "/" + d.medoreng + "/" + d.templateid} class="px-2">
-                    <div class="h6 button bg-success text-white">
+                  <a className="cursor_pointer px-2" href={"/enterpersonaldetails/" + d.resumeid + "/" + d.medoreng + "/" + d.templateid}>
+                    <div class="h6 button bg-success text-white cursor_pointer" >
                       edit
                     </div>
                   </a>
@@ -75,7 +75,7 @@ const Profile = () => {
                   </div>
 
                   <a className="cursor_pointer" href={"/showresults/" + d.resumeid + "/" + d.templateid + "/" + d.medoreng} class="px-2" >
-                    <div class="h6 button bg-warning text-white">
+                    <div class="h6 button bg-warning text-white cursor_pointer">
                       download
                     </div>
                   </a>

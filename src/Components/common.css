@@ -70,8 +70,12 @@ h6,
   font-weight: bold;
 }
 
+.cursor_pointer {
+  transition: .3s;
+}
 .cursor_pointer:hover {
   cursor: pointer;
+  letter-spacing: 3px;
 }
 
 .color_blue_1 {

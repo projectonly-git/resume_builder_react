@@ -183,8 +183,8 @@ const Register = () => {
                 </div>
 
 
-                <div class="p-small register_here make_it_pointer text-center" >
-                  <a href="/login" style={{ "color": "#3c4852" }}>already have an account <span class="underline_it">login here</span> </a>
+                <div class="p-small register_here text-center" >
+                  <a href="/login" class="cursor_pointer" style={{ "color": "#3c4852" }}>already have an account <span class="underline_it">login here</span> </a>
                 </div>
 
 

@@ -35,7 +35,7 @@
 }
 
 
-.top_header_button:hover {
+.home_hero_section .top_header_button:hover {
   border-radius: 10px;
   background: #ff0084;
   /* fallback for old browsers */

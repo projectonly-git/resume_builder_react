@@ -53,7 +53,7 @@ const Userchooseme = () => {
           <div class="row">
             <div class="col-lg-6 d-flex justify-content-center">
               <div class="i_am_medical top_header_button p-2 cursor_pointer" onClick={() => createtemplate("engineer")}>
-                <h4 class="text-white"> Software engineer</h4>
+                <h4 class="text-white cursor_pointer"> Software engineer</h4>
               </div>
             </div>
 
@@ -74,8 +74,8 @@ const Userchooseme = () => {
             </div>
 
             <div class="col-lg-6">
-              <div class="i_am_medical top_header_button p-2 cursor_pointer" onClick={() => createtemplate("medical")} >
-                <h4 class="text-white"> Medical student </h4>
+              <div class="i_am_medical top_header_button p-2 cursor_pointer " onClick={() => createtemplate("medical")} >
+                <h4 class="text-white cursor_pointer"> Medical student </h4>
               </div>
             </div>
 

@@ -53,7 +53,7 @@ const Navbaronlyhome = () => {
           <div class=" container ">
             <div class=" row py-2 ">
               <div class=" col-lg-4 ">
-                <a class="cursor_pointer" href="/"><h3 class="text-white"> Resume Maker </h3></a>
+                <a class="" href="/"><h3 class="text-white cursor_pointer"> Resume Maker </h3></a>
               </div>
               <div class=" col-lg-8 ">
                 <div class=" d-flex flex-row navbar_option ">

@@ -57,7 +57,7 @@ const Navbar = () => {
                         <div class=" row py-2 ">
 
                             <div class=" col-lg-4 ">
-                                <a class="cursor_pointer text-white" href="/"><h3 > Resume Maker </h3></a>
+                                <a class=" text-white" href="/"><h3 class="cursor_pointer"> Resume Maker </h3></a>
                             </div>
 
                             <div class=" col-lg-8 text-white">

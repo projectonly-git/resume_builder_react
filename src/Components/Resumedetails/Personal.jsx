@@ -432,7 +432,7 @@ const Personal = (props) => {
 
 
         <div class="d-flex flex-row justify-content-between my-5 border-bottom-link">
-          <div class="p-large  text-white px-3" >
+          <div class="p-large  text-white px-3 cursor_pointer" >
             <a href={"/choosetemplates/" + resumeId + "/" + field}>
               <i class="fa fa-arrow-circle-left text-white" aria-hidden="true"></i> <span class="px-2 text-white"> Change template </span>
             </a>
