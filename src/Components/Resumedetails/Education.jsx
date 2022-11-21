@@ -11,6 +11,10 @@ import './Resumedetails.css'
 import '../common.css'
 
 
+
+
+
+
 const Showeducation = (props) => {
 
   if (props.editingornew === 0) {
@@ -41,6 +45,8 @@ const Education = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
     getAlleducation();
+
+
   }, [])
   const updateEditingornewtoedit = (curredu) => {
     setEditingornew(1)
@@ -65,9 +71,9 @@ const Education = () => {
       }, (error) => { })
   }
 
-  const previewanddownload = () =>{
-    const link ="/showresults/" + resumeId + "/" + templateId +"/" + field
-    navigate(link, {state : {message: "saved_resume"}} )
+  const previewanddownload = () => {
+    const link = "/showresults/" + resumeId + "/" + templateId + "/" + field
+    navigate(link, { state: { message: "saved_resume" } })
   }
 
 
@@ -141,17 +147,6 @@ const Education = () => {
             </div>
 
             <Showeducation editingornew={editingornew} updateEditingornewtoadd={updateEditingornewtoadd} getAlleducation={getAlleducation} resumeId={resumeId} editingoedu={editingoedu} />
-
-
-
-
-
-
-
-
-
-
-
           </div>
 
 
@@ -168,9 +163,9 @@ const Education = () => {
         </div>
 
         <div class="d-flex flex-row justify-content-center my-5 " onClick={previewanddownload}>
-            <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3" >
-              <span class="px-2"> preview and download </span>
-            </div>
+          <div class=" h3 cursor_pointer text-white px-3 border-bottom-link save_and_preview py-3" >
+            <span class="px-2"> preview and download </span>
+          </div>
         </div>
 
 

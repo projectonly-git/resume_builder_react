@@ -169,10 +169,10 @@ const Projectsadd = (props) => {
             <div class={showorhide}>
               <input name="endtime" onChange={update} class={" input_box_text px-3 p-large"} type="month" value={makeformdata.endtime} />
             </div>
-            <div class="d-flex flex-row">
+            <div class="d-flex flex-row py-3">
               <input type="checkbox" name="endyearcheckbox" value="present" onChange={handleCheckboxChange} checked={check} />
-              <div class="px-3 py-2">
-                <label for="element" class="p-small py-2">Present</label>
+              <div class="px-5">
+                <label for="element" class="p-small">Present</label>
               </div>
             </div>
           </div>

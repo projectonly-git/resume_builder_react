@@ -109,20 +109,11 @@ const Skills = () => {
             <div class="heading p-3 mt-3 w-100">
               <h2> New skill </h2>
             </div>
-
             <div class="mt-3">
-
-              <div class="input_box_text px-3 d-flex flex-row">
-                <div class="px-3 py-2">
-
-                </div>
-                <input class="w-100  p-large" type="text" onChange={update} placeholder="eg.. Software Engineering" />
+              <div class="d-flex flex-row">
+                <input  name="skills" class="w-100  px-3 p-large input_box_text" type="text" onChange={update} placeholder="eg.. Software Engineering" autoFocus/>
               </div>
             </div>
-
-
-
-
             <div class="mt-2">
 
               <div class="top_header_button h5 p-3 w-100 cursor_pointer text-center" onClick={addThisSkill}>

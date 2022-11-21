@@ -18,7 +18,7 @@ const Educationadd = (props) => {
     const [showorhide, setShoworhide] = useState("") // for end year checkbox show or hide
 
     const [insw, setInsw] = useState(""); const [degreew, setDegreew] = useState(""); // for warnings
-    
+
     const [makeformdata, setMakeformdata] = useState({
         class: "", institution: "", startyear: 2000, endyear: 2000, marks: ""
     })
@@ -118,11 +118,8 @@ const Educationadd = (props) => {
                 <div class=" ">
                     <div class="h4"> Course </div>
                 </div>
-                <div class="input_box_text px-3 d-flex flex-row">
-                    <div class="px-3 py-2">
-                        <i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <input onChange={update} name="class" class="w-100  p-large" type="text" placeholder="enter course name" />
+                <div class="d-flex flex-row">
+                    <input onChange={update} name="class" class="w-100  p-large input_box_text px-2" type="text" placeholder="enter course name" autoFocus></input>
                 </div>
                 <div class="p-small text-danger py-2"> {degreew} </div>
 
@@ -214,9 +211,12 @@ const Educationadd = (props) => {
                         </div>
 
                         <div class="d-flex flex-row">
-                            <input type="checkbox" name="endyearcheckbox" value="present" onChange={handleCheckboxChange} checked={check}  />
-                            <div class="px-3 py-2">
-                                <label for="element" class="p-small py-2">Present</label>
+                            <div>
+                                <input type="checkbox" name="endyearcheckbox" value="present" onChange={handleCheckboxChange} checked={check} />
+                            </div>
+
+                            <div class="px-3">
+                                <label for="element" class="h6">Present</label>
                             </div>
                         </div>
 
@@ -231,7 +231,7 @@ const Educationadd = (props) => {
                     </div>
                 </div>
                 <div class="input_box_text px-3 d-flex flex-row">
-                    
+
                     <input onChange={update} name="marks" class="w-100  p-large" type="text" placeholder="enter gpa" />
                 </div>
             </div>

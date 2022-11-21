@@ -38,7 +38,14 @@
 </body>
 
 <script>
- $ (document).ready(function () {
+
+  let inputElem = document.querySelector(".input_box_text_focus");
+  window.addEventListener('load', function (e) {
+    inputElem.focus();
+  })
+
+
+  $(document).ready(function () {
     $(window).scroll(function () {
       var scroll = $(window).scrollTop();
       if (scroll >= 5) {
@@ -52,7 +59,7 @@
     });
 
     $(".tt").each(function (index, element) {
-        new bootstrap.Tooltip(element);
+      new bootstrap.Tooltip(element);
     });
 
 

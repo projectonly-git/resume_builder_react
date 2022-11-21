@@ -97,8 +97,8 @@ const Projectsadd = (props) => {
       axios.post(process.env.REACT_APP_SERVER_URL + '/saveexperiencedetails/' + props.resumeId, exp)
         .then((response) => {
           console.log(response.data)
-          //props.getAllexp()
-          window.location.reload()
+          props.getAllexp()
+          //window.location.reload()
         }, (error) => { })
     }
 
@@ -114,11 +114,8 @@ const Projectsadd = (props) => {
         <div class=" ">
           <div class="h4"> Position </div>
         </div>
-        <div class="input_box_text px-3 d-flex flex-row">
-          <div class="px-3 py-2">
-            <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
-          </div>
-          <input onChange={update} name="position" class="w-100  p-large" type="text" placeholder="eg.. SDE - III" />
+        <div class="d-flex flex-row">
+          <input onChange={update} name="position" class="w-100  p-large input_box_text px-3" type="text" placeholder="eg.. SDE - III" autoFocus />
         </div>
         <div class="p-small text-danger py-2"> {posw} </div>
       </div>
@@ -151,8 +148,8 @@ const Projectsadd = (props) => {
             </div>
             <div class="d-flex flex-row">
               <input type="checkbox" name="endyearcheckbox" value="present" onChange={handleCheckboxChange} checked={check} />
-              <div class="px-3 py-2">
-                <label for="element" class="p-small py-2">Present</label>
+              <div class="px-3">
+                <label for="element" class="p-small">Present</label>
               </div>
             </div>
           </div>

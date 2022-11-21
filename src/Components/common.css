@@ -139,6 +139,27 @@ select:focus{
   border-radius: 5px;
 }
 
+input{
+  border: none;
+}
+
+input:focus{
+  outline: none;
+}
+
+.input_box_text{
+    border : none;
+    height : 60px;
+    border-radius: 10px;
+    border : 2px solid #475b75;
+}
+.input_box_text_focus:focus{
+  border:50px solid #475b75;
+}
+.make_border_like_input_text_box{
+  border : 5px solid #475b75;
+}
+
 
 
 

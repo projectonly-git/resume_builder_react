@@ -259,8 +259,8 @@ const Personal = (props) => {
             <div class=" ">
               <div class="h4"> first name</div>
             </div>
-            <div class="input_box_text w-100">
-              <input name="fullname1" onChange={update} class="w-100  px-3 p-large" type="text" value={makeformdata.fullname1} />
+            <div class="w-100 focus_it">
+              <input name="fullname1" onChange={update} class="w-100  px-3 p-large input_box_text px-2" type="text" value={makeformdata.fullname1} autoFocus ></input>
             </div>
             <div class="p-small text-danger"> {namew1} </div>
           </div>
@@ -269,8 +269,8 @@ const Personal = (props) => {
             <div class=" ">
               <div class="h4"> last name</div>
             </div>
-            <div class="input_box_text w-100">
-              <input name="fullname2" onChange={update} class="w-100  px-3 p-large" type="text" value={makeformdata.fullname2} />
+            <div class="w-100">
+              <input name="fullname2" onChange={update} class="w-100  px-3 p-large input_box_text px-2 focus_it" type="text" value={makeformdata.fullname2} />
             </div>
             <div class="p-small text-danger"> {namew2} </div>
           </div>
@@ -279,8 +279,8 @@ const Personal = (props) => {
             <div class=" ">
               <div class="h4"> job title</div>
             </div>
-            <div class="input_box_text w-100 px-2">
-              <input onChange={update} name="jobtitle" class="w-100  p-large" type="text" value={makeformdata.jobtitle} />
+            <div class="w-100">
+              <input onChange={update} name="jobtitle" class="w-100  p-large input_box_text px-2 focus_it" type="text" value={makeformdata.jobtitle} />
               <div class="p-small text-danger py-2"> {jobtitlew} </div>
             </div>
 
@@ -293,14 +293,14 @@ const Personal = (props) => {
 
           </div>
           <div class="d-flex flex-row justify-content-between">
-            <div class="each_box1_personal">
+            <div class="each_box1_personal focus_it">
               <div class="h4"> Address</div>
               <input onChange={update} name="address" class="w-100 input_box_text px-3 p-large" type="text" value={makeformdata.address} />
               <div class="p-small text-danger"> {addressw} </div>
             </div>
             <div class="each_box1_personal">
               <div class="h4"> city</div>
-              <input onChange={update} name="city" class="w-100 input_box_text px-3 p-large" type="text" value={makeformdata.city} />
+              <input onChange={update} name="city" class="w-100 input_box_text px-3 p-large " type="text" value={makeformdata.city} />
               <div class="p-small text-danger"> {cityw} </div>
             </div>
             <div class="each_box1_personal ">
@@ -413,7 +413,7 @@ const Personal = (props) => {
             <div class="px-3 py-2">
               <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
             </div>
-            <input onChange={update} name="linkedin" class="w-100  p-large" type="text" value={makeformdata.linkedin} />
+            <input onChange={update} name="linkedin" class="w-100  p-large px-2 " type="text" value={makeformdata.linkedin} />
           </div>
         </div>
 

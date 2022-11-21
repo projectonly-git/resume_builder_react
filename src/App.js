@@ -4,6 +4,9 @@ import {
   Route,
 } from "react-router-dom";
 
+import React, { useState, useEffect } from "react";
+import $ from 'jquery';
+
 
 
 
@@ -29,6 +32,7 @@ import Register from './Components/Loginregister/Register'
 import About from './Components/About/About'
 
 function App() {
+  
   return (
     <BrowserRouter>
       <Routes>

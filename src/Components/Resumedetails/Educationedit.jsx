@@ -8,6 +8,8 @@ import Navbar from '../Navbar/Navbar'
 import './Resumedetails.css'
 import '../common.css'
 
+import $ from 'jquery'
+
 
 const Educationedit = (props) => {
 
@@ -142,11 +144,8 @@ const Educationedit = (props) => {
                 <div class=" ">
                     <div class="h4"> Course </div>
                 </div>
-                <div class="input_box_text px-3 d-flex flex-row">
-                    <div class="px-3 py-2">
-                        <i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <input onChange={update} name="class" class="w-100  p-large" type="text" value={makeformdata.class} />
+                <div class="d-flex flex-row">
+                    <input onChange={update} name="class" class="w-100  p-large input_box_text px-3" type="text" value={makeformdata.class} autoFocus />
                 </div>
                 <div class="p-small text-danger py-2"> {degreew} </div>
 
@@ -239,8 +238,8 @@ const Educationedit = (props) => {
 
                         <div class="d-flex flex-row">
                             <input type="checkbox" name="endyearcheckbox" value="present" onChange={handleCheckboxChange} checked={check} />
-                            <div class="px-3 py-2">
-                                <label for="element" class="p-small py-2">Present</label>
+                            <div class="px-3">
+                                <label for="element" class="p-small">Present</label>
                             </div>
                         </div>
 
@@ -256,7 +255,7 @@ const Educationedit = (props) => {
                     </div>
                 </div>
                 <div class="input_box_text px-3 d-flex flex-row">
-                    
+
                     <input onChange={update} name="marks" class="w-100  p-large" type="text" value={makeformdata.marks} />
                 </div>
             </div>

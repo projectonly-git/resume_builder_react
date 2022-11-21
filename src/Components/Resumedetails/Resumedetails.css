@@ -3,21 +3,16 @@
     border-radius: 30px 10px 30px 10px;
 }
 
-.enter_resume_details .input_box_text{
+/*.enter_resume_details .input_box_text{
     border : none;
     height : 60px;
     border-radius: 10px;
     border : 2px solid #475b75;
 }
-.enter_resume_details input{
-    border : none;
-    height : 50px;
-    border-radius: 10px;
-}
-.enter_resume_details input:focus{
-    outline : none;
-}
 
+.enter_resume_details .input_box_text:focus{
+    border : 5px solid #475b75;
+}*/
 
 .enter_resume_details .each_box{
     width : 40%;

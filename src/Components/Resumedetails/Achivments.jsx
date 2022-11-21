@@ -59,11 +59,8 @@ const Whattoshow = (props) => {
           <div class="">
             <div class="h4"> Achivement title </div>
           </div>
-          <div class="input_box_text px-3 d-flex flex-row">
-            <div class="px-3 py-2">
-              <i class="fa fa-file-code-o fa-2x" aria-hidden="true"></i>
-            </div>
-            <input name="achivmentname" onChange={update} class="w-100  p-large" type="text" placeholder="enter achivement title " />
+          <div class="d-flex flex-row">
+            <input name="achivmentname" onChange={update} class="w-100  p-large input_box_text px-3" type="text" placeholder="enter achivement title " autoFocus/>
           </div>
           <div class="p-small text-danger py-2"> {achcnamew} </div>
         </div>
